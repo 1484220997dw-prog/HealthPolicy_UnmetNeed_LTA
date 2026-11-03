@@ -36,6 +36,7 @@ HealthPolicy_UnmetNeed_LTA/
 │   ├── 05_make_synthetic.py     synthetic replica for people without KHP access
 │   ├── 06_sensitivity_k5.py     the five-status solution, for comparison
 │   ├── 07_check_manuscript.py   word counts and audit of the numbers in the text
+│   ├── 08_make_docx.py          the .docx files to upload, built from manuscript/
 │   └── run_all.py               the whole pipeline, in order
 ├── notebooks/
 │   └── KHP_UnmetNeed_LTA_Colab.ipynb    runs end to end in Google Colab
