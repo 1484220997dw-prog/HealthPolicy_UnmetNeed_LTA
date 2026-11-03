@@ -270,6 +270,30 @@ def _order_statuses(fit: LTAFit) -> LTAFit:
     return _permute(fit, np.argsort(fit.rho.sum(axis=0)))
 
 
+def evaluate(Y: np.ndarray, w: np.ndarray, delta: np.ndarray, tau: np.ndarray,
+             rho: np.ndarray) -> LTAFit:
+    """Posteriors and log-likelihood at given parameters, with no re-estimation.
+
+    Used when a stored point estimate is reloaded, so that reusing a fit returns
+    exactly the stored solution rather than a near-identical one; otherwise the
+    posteriors, and the status assignments built on them, drift slightly between
+    runs.
+    """
+    N, T, J = Y.shape
+    M = (~np.isnan(Y)).astype(float)
+    Yf = np.nan_to_num(Y)
+    YM = (Yf * M).reshape(N * T, J)
+    NM = ((1 - Yf) * M).reshape(N * T, J)
+    wn = w / w.mean()
+    K = rho.shape[1]
+    b = _emission(YM, NM, rho, (N, T, K))
+    gamma, _, ll_i = _estep(b, delta, tau, wn)
+    prevalence = (gamma * wn[:, None, None]).sum(axis=0) / wn.sum()
+    return LTAFit(K=K, delta=delta, tau=tau, rho=rho,
+                  loglik=float((wn * ll_i).sum()), n_iter=0, n_obs=N,
+                  gamma=gamma, prevalence=prevalence, homogeneous=False)
+
+
 def _align_to(fit: LTAFit, ref_rho: np.ndarray) -> LTAFit:
     """Relabel a bootstrap solution to match the point estimate's statuses.
 

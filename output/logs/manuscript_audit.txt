@@ -41,24 +41,42 @@ ok   den_cost 2020 (%)                                    = 7.0 or 7.1
 ok   den_cost 2023 (%)                                    = 4.0
 ok   den_noncost 2020 (%)                                 = 8.8 or 8.9
 ok   den_noncost 2023 (%)                                 = 5.9 or 6.0
-     Model A Cost barrier                     age_group: 65+               RRR 0.72 (0.47-1.11)
-     Model A Cost barrier                     employed                     RRR 1.53 (1.19-1.98)
-     Model A Cost barrier                     income_q5_c: Q1 (lowest)     RRR 3.67 (2.27-5.93)
-     Model A Cost barrier                     insurance3: Medical Aid      RRR 2.18 (1.44-3.29)
-     Model A Cost barrier                     disability                   RRR 1.02 (0.70-1.47)
-     Model A Time and availability barrier    age_group: 65+               RRR 0.57 (0.41-0.80)
-     Model A Time and availability barrier    employed                     RRR 1.66 (1.32-2.09)
-     Model A Time and availability barrier    income_q5_c: Q1 (lowest)     RRR 0.84 (0.59-1.19)
-     Model A Time and availability barrier    insurance3: Medical Aid      RRR 1.19 (0.71-2.01)
-     Model A Time and availability barrier    disability                   RRR 1.42 (1.02-1.97)
-     Model A Compound barrier                 age_group: 65+               RRR 0.22 (0.04-1.13)
-     Model A Compound barrier                 employed                     RRR 4.46 (1.83-10.88)
-     Model A Compound barrier                 income_q5_c: Q1 (lowest)     RRR 1.80 (0.34-9.52)
-     Model A Compound barrier                 insurance3: Medical Aid      RRR 5.78 (0.81-41.03)
-     Model A Compound barrier                 disability                   RRR 1.84 (0.20-17.17)
-     Model B employed                                       OR  1.48 (1.15-1.89)
-     Model B poor_srh                                       OR  1.28 (1.03-1.60)
-     Model B status_t: Compound barrier                     OR  4.44 (2.07-9.52)
-     Model B status_t: Time and availability barrier        OR  0.67 (0.54-0.82)
-     Model B interval: 2021-2022                            OR  2.66 (2.16-3.27)
-     Model B interval: 2022-2023                            OR  1.64 (1.33-2.03)
+ok   Model A, Cost barrier, income_q5_c: Q1 (lowest)      = 3.66 or 3.67
+ok      ... lower bound                                   = 2.26 or 2.27
+ok      ... upper bound                                   = 5.93 or 5.94
+ok   Model A, Cost barrier, income_q5_c: Q2               = 2.53 or 2.54
+ok   Model A, Cost barrier, income_q5_c: Q3               = 1.78 or 1.79
+ok   Model A, Cost barrier, income_q5_c: Q4               = 1.48 or 1.49
+ok   Model A, Cost barrier, insurance3: Medical Aid       = 2.17 or 2.18
+ok      ... lower bound                                   = 1.44 or 1.45
+ok      ... upper bound                                   = 3.28 or 3.29
+ok   Model A, Time and availability barrier, age_group: 65+ = 0.57 or 0.58
+ok      ... lower bound                                   = 0.40 or 0.41
+ok      ... upper bound                                   = 0.80 or 0.81
+ok   Model A, Time and availability barrier, employed     = 1.66 or 1.67
+ok      ... lower bound                                   = 1.32 or 1.33
+ok      ... upper bound                                   = 2.08 or 2.09
+ok   Model A, Time and availability barrier, income_q5_c: Q1 (lowest) = 0.83 or 0.84
+ok      ... lower bound                                   = 0.58 or 0.59
+ok      ... upper bound                                   = 1.19 or 1.20
+ok   Model A, Time and availability barrier, disability   = 1.41 or 1.42
+ok      ... lower bound                                   = 1.01 or 1.02
+ok      ... upper bound                                   = 1.96 or 1.97
+ok   Model B, employed                                    = 1.47 or 1.48
+ok      ... lower bound                                   = 1.15 or 1.16
+ok      ... upper bound                                   = 1.89 or 1.90
+ok   Model B, poor_srh                                    = 1.28 or 1.29
+ok      ... lower bound                                   = 1.03 or 1.04
+ok      ... upper bound                                   = 1.60 or 1.61
+ok   Model B, status_t: Compound barrier                  = 4.44 or 4.45
+ok      ... lower bound                                   = 2.07 or 2.08
+ok      ... upper bound                                   = 9.51 or 9.52
+ok   Model B, status_t: Time and availability barrier     = 0.66 or 0.67
+ok      ... lower bound                                   = 0.53 or 0.54
+ok      ... upper bound                                   = 0.82 or 0.83
+ok   Model B, interval: 2021-2022                         = 2.65 or 2.66
+ok      ... lower bound                                   = 2.15 or 2.16
+ok      ... upper bound                                   = 3.27 or 3.28
+ok   Model B, interval: 2022-2023                         = 1.64 or 1.65
+ok      ... lower bound                                   = 1.32 or 1.33
+ok      ... upper bound                                   = 2.02 or 2.03

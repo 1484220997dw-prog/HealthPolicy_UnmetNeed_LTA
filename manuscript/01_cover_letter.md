@@ -54,8 +54,9 @@ without care, and for which reason". The implications generalise to any system w
 financial protection and service availability are governed by separate policy
 instruments.
 
-The manuscript is 3,9xx words of text with 3 tables and 1 figure, within the limits
-for full-length articles. The abstract follows the required structure, and we have
+The manuscript is about 3,650 words of text with 3 tables and 1 figure, within the
+limits for full-length articles. (The exact count as submitted is recorded in
+`output/logs/word_count.txt`; please confirm it in Word before uploading.) The abstract follows the required structure, and we have
 included the research-in-context box, highlights and a CRediT statement. All analysis
 code, the data dictionary, a synthetic replica of the analysis panel that allows the
 pipeline to be run without the restricted microdata, and the complete set of tables,

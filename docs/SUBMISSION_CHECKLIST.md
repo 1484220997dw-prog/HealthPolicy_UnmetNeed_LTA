@@ -41,6 +41,19 @@ command.
 | Data statement | encouraged | on the title page and in the Methods |
 | Generative AI disclosure | required where used | on the title page |
 
+## Checking the manuscript against the analysis
+
+```bash
+python src/07_check_manuscript.py
+```
+
+This reports the word counts against every limit in the table above, and then searches
+the manuscript for each quantity in `output/logs/numbers.json` and for each regression
+estimate quoted in section 3.4. A line marked `MISS` means the analysis produces a value
+the prose does not contain — that is, the text has drifted from the output and must be
+corrected before submission. The report is saved to
+`output/logs/manuscript_audit.txt`.
+
 ## AUTHOR ACTION before submission
 
 1. **GitHub URL.** Push the repository (see `docs/GITHUB_PUSH.md`) and insert the

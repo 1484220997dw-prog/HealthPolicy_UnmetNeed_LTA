@@ -74,15 +74,9 @@ def main() -> int:
         # from the real data, or the tables and figures reported in the paper.
         cfg.PANEL_CSV = cfg.SYNTHETIC_CSV
         cfg.DERIVED_DIR = cfg.SYNTHETIC_DIR
-        base = cfg.OUTPUT_DIR / "synthetic"
-        cfg.TABLES_DIR = base / "tables"
-        cfg.FIGURES_DIR = base / "figures"
-        cfg.LOGS_DIR = base / "logs"
-        for _d in (cfg.TABLES_DIR, cfg.FIGURES_DIR, cfg.LOGS_DIR):
-            _d.mkdir(parents=True, exist_ok=True)
-        cfg.NUMBERS_JSON = cfg.LOGS_DIR / "numbers.json"
-        print(f"synthetic mode: reading {cfg.SYNTHETIC_CSV.name}; "
-              f"all results go to {base}")
+        cfg.use_output_root(cfg.PROJECT_ROOT / "output" / "synthetic")
+        print(f"synthetic mode: reading {cfg.SYNTHETIC_CSV.name}")
+        print(cfg.describe_paths())
         # Step 01 needs the restricted files; step 05 produces the synthetic panel
         # from them; step 07 audits the manuscript, whose numbers come from the
         # real data and would all appear to mismatch.

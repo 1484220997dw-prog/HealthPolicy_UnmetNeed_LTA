@@ -147,18 +147,43 @@ def audit() -> list[str]:
         for year in ("2020", "2023"):
             check(f"{name} {year} (%)", ind[name][year])
 
-    # Model A and Model B estimates quoted in section 3.4
+    # Model A and Model B estimates quoted in section 3.4. Each quoted figure is
+    # searched for in the prose, so a change in the estimates shows up here
+    # instead of leaving a stale number in the text.
     ta = pd.read_csv(cfg.TABLES_DIR / "tableA3_model_a_baseline_status.csv")
     tb = pd.read_csv(cfg.TABLES_DIR / "tableA4_model_b_persistence.csv")
+    quoted_a = {
+        ("Cost barrier", "income_q5_c: Q1 (lowest)"): "full",
+        ("Cost barrier", "income_q5_c: Q2"): "point",
+        ("Cost barrier", "income_q5_c: Q3"): "point",
+        ("Cost barrier", "income_q5_c: Q4"): "point",
+        ("Cost barrier", "insurance3: Medical Aid"): "full",
+        ("Time and availability barrier", "income_q5_c: Q1 (lowest)"): "full",
+        ("Time and availability barrier", "employed"): "full",
+        ("Time and availability barrier", "disability"): "full",
+        ("Time and availability barrier", "age_group: 65+"): "full",
+    }
+    quoted_b = {
+        "status_t: Compound barrier": "full",
+        "status_t: Time and availability barrier": "full",
+        "employed": "full",
+        "poor_srh": "full",
+        "interval: 2021-2022": "full",
+        "interval: 2022-2023": "full",
+    }
     for _, r in ta.iterrows():
-        if r.term in ("income_q5_c: Q1 (lowest)", "insurance3: Medical Aid",
-                      "employed", "disability", "age_group: 65+"):
-            out.append(f"     Model A {r.outcome:<32} {r.term:<28} "
-                       f"RRR {r.RRR:.2f} ({r.ci_low:.2f}-{r.ci_high:.2f})")
+        how = quoted_a.get((r.outcome, r.term))
+        if how:
+            check(f"Model A, {r.outcome}, {r.term}", r.RRR, decimals=2)
+            if how == "full":
+                check(f"   ... lower bound", r.ci_low, decimals=2)
+                check(f"   ... upper bound", r.ci_high, decimals=2)
     for _, r in tb.iterrows():
-        if r.term.startswith(("status_t", "interval", "employed", "poor_srh")):
-            out.append(f"     Model B {r.term:<46} "
-                       f"OR  {r.OR:.2f} ({r.ci_low:.2f}-{r.ci_high:.2f})")
+        how = quoted_b.get(r.term)
+        if how:
+            check(f"Model B, {r.term}", r.OR, decimals=2)
+            check(f"   ... lower bound", r.ci_low, decimals=2)
+            check(f"   ... upper bound", r.ci_high, decimals=2)
     return out
 
 
@@ -197,6 +222,7 @@ def limits() -> list[str]:
 
 
 def main() -> None:
+    print(f"writing results to {cfg.TABLES_DIR.parent}")
     counts = word_count()
     lines = [f"{k:<34} {v:>6,}" for k, v in counts.items()]
     lim = limits()

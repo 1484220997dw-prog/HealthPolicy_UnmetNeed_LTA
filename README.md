@@ -153,6 +153,17 @@ completes without the restricted data; one cell mounts Google Drive and points
 
 Full methodological detail, including the likelihood, is in `manuscript/04_appendix.md`.
 
+## Checking the estimator
+
+The latent transition model is implemented here rather than taken from a package, so
+the repository carries its own checks: simulated data from known parameters, recovery
+of those parameters, missing waves kept in the likelihood, exact reloading of a stored
+fit, and label alignment across bootstrap replicates.
+
+```bash
+python src/tests/test_lta_recovery.py
+```
+
 ## Checking the manuscript against the code
 
 `output/logs/numbers.json` holds every quantity quoted in the manuscript text, written

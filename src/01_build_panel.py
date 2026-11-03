@@ -63,6 +63,7 @@ def weighted_prevalence(coh: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
+    print(f"writing results to {cfg.TABLES_DIR.parent}")
     panel = build_panel(verbose=True)
     panel.to_csv(cfg.PANEL_CSV, index=False, encoding="utf-8")
     print(f"wrote {cfg.PANEL_CSV}  ({len(panel):,} person-wave rows)")

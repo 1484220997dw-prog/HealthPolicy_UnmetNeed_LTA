@@ -1,0 +1,16 @@
+run started 2026-11-03T11:19:53+00:00
+python 3.12.10
+git commit 73911dd
+mode KHP microdata
+KHP_RAW_DIR G:\我的云端硬盘\2026_fall semester\Dataset\medical_pannel
+
+00_check_environment.py: ok in 2.1s
+01_build_panel.py: ok in 23.1s
+02_fit_lta.py: ok in 1,276.7s
+03_covariates.py: ok in 2.7s
+04_tables_figures.py: ok in 6.2s
+05_make_synthetic.py: ok in 1.4s
+06_sensitivity_k5.py: ok in 221.4s
+07_check_manuscript.py: ok in 0.1s
+
+run finished 2026-11-03T11:45:27+00:00

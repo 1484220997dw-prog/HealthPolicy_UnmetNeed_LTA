@@ -292,6 +292,7 @@ def appendix_tables(df: pd.DataFrame, panel: pd.DataFrame, names: list[str]) -> 
 
 
 def main() -> None:
+    print(f"writing results to {cfg.TABLES_DIR.parent}")
     params = json.loads((cfg.LOGS_DIR / "lta_parameters.json").read_text(encoding="utf-8"))
     names = params["status_names"]
     panel = pd.read_csv(cfg.PANEL_CSV)

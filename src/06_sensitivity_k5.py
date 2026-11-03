@@ -25,6 +25,7 @@ from khp_lta.build import indicator_array
 
 
 def main() -> None:
+    print(f"writing results to {cfg.TABLES_DIR.parent}")
     panel = pd.read_csv(cfg.PANEL_CSV)
     Y, w, _ = indicator_array(panel)
 

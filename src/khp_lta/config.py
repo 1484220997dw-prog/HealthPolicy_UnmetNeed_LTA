@@ -43,6 +43,33 @@ NUMBERS_JSON = LOGS_DIR / "numbers.json"
 
 RANDOM_SEED = 20260720
 
+
+def use_output_root(root: Path) -> None:
+    """Point every output path at ``root`` (used by run_all.py --synthetic).
+
+    The module attributes are the single source of truth for where results are
+    written, so redirecting them here is what keeps a demo run on synthetic data
+    from overwriting the results reported in the paper.
+    """
+    global OUTPUT_DIR, TABLES_DIR, FIGURES_DIR, LOGS_DIR, NUMBERS_JSON
+    OUTPUT_DIR = root
+    TABLES_DIR = root / "tables"
+    FIGURES_DIR = root / "figures"
+    LOGS_DIR = root / "logs"
+    NUMBERS_JSON = LOGS_DIR / "numbers.json"
+    for d in (TABLES_DIR, FIGURES_DIR, LOGS_DIR):
+        d.mkdir(parents=True, exist_ok=True)
+
+
+def describe_paths() -> str:
+    """One line per path, so a misdirected run is obvious in the log."""
+    return "\n".join([
+        f"panel   {PANEL_CSV}",
+        f"tables  {TABLES_DIR}",
+        f"figures {FIGURES_DIR}",
+        f"logs    {LOGS_DIR}",
+    ])
+
 # --------------------------------------------------------------------------- #
 # Restricted source microdata
 # --------------------------------------------------------------------------- #

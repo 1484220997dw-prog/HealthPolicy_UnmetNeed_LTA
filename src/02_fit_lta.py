@@ -77,6 +77,7 @@ def main() -> None:
     args, _ = ap.parse_known_args()
 
     panel = pd.read_csv(cfg.PANEL_CSV)
+    print(f"writing results to {cfg.TABLES_DIR.parent}")
     Y, w, ids = indicator_array(panel, complete_only=False)
     print(f"analysis sample: {Y.shape[0]:,} adults x {Y.shape[1]} waves "
           f"x {Y.shape[2]} indicators")
@@ -89,12 +90,9 @@ def main() -> None:
     saved = cfg.LOGS_DIR / "lta_parameters.json"
     if args.reuse_fit and saved.exists():
         prev = json.loads(saved.read_text(encoding="utf-8"))
-        start = (np.array(prev["delta"]), np.array(prev["tau"]),
-                 np.array(prev["rho"]))
-        print("reusing the stored point estimate as the starting value")
-        fit = lta._order_statuses(
-            lta.fit_once(Y, w, K, np.random.default_rng(cfg.RANDOM_SEED),
-                         max_iter=cfg.MAX_ITER, tol=cfg.TOL, start=start))
+        print("reusing the stored point estimate exactly, without re-estimating")
+        fit = lta.evaluate(Y, w, np.array(prev["delta"]), np.array(prev["tau"]),
+                           np.array(prev["rho"]))
     else:
         sel = model_selection(Y, w)
         sel.to_csv(cfg.TABLES_DIR / "tableA1_model_selection.csv", index=False)

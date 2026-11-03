@@ -154,6 +154,7 @@ def fmt(row, col: str = "OR") -> str:
 
 
 def main() -> None:
+    print(f"writing results to {cfg.TABLES_DIR.parent}")
     params = json.loads((cfg.LOGS_DIR / "lta_parameters.json").read_text(encoding="utf-8"))
     names = params["status_names"]
     panel = pd.read_csv(cfg.PANEL_CSV)
@@ -195,7 +196,7 @@ def main() -> None:
         rows.append(row)
     combined = pd.DataFrame(rows)
     combined.to_csv(cfg.TABLES_DIR / "tableA10_covariates_combined.csv", index=False)
-    print("\n" + table4.to_string(index=False))
+    print("\n" + combined.to_string(index=False))
 
     summary = {
         "model_a_n": int(n_a),
