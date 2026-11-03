@@ -1,0 +1,64 @@
+ok   baseline cohort                                      = 10,508 or 10508
+ok   person-waves with the module answered                = 36,605 or 36605
+ok   answered all four waves                              = 7,905 or 7905
+ok   any unmet need 2020 (%)                              = 21.8
+ok   any unmet need 2023 (%)                              = 14.9
+ok   No unmet need prevalence 2020 (%)                    = 78.2
+ok   No unmet need prevalence 2023 (%)                    = 85.1
+ok   Cost barrier prevalence 2020 (%)                     = 8.0
+ok   Cost barrier prevalence 2023 (%)                     = 4.6
+ok   Time and availability barrier prevalence 2020 (%)    = 13.2
+ok   Time and availability barrier prevalence 2023 (%)    = 9.9
+ok   Compound barrier prevalence 2020 (%)                 = 0.6
+ok   Compound barrier prevalence 2023 (%)                 = 0.5
+ok   mean probability of staying, No unmet need           = 92.9
+ok   mean probability of staying, Cost barrier            = 60.6
+ok   mean probability of staying, Time and availability barrier = 50.3
+ok   mean probability of staying, Compound barrier        = 22.1
+ok   mean exit to no unmet need, Cost barrier             = 34.0
+ok   mean exit to no unmet need, Time and availability barrier = 47.0
+ok   mean exit to no unmet need, Compound barrier         = 17.8
+ok   annual entry rate (%)                                = 7.1
+ok   share_never_unmet_4w                                 = 69.0
+ok   share_once_unmet_4w                                  = 15.3
+ok   share_two_or_more_4w                                 = 15.7
+ok   share_three_or_more_4w                               = 8.0
+ok   share_all_four_4w                                    = 3.6
+ok   conditional persistence (%)                          = 50.9
+ok   entropy R2                                           = 0.814
+ok   BIC of the selected model                            = 58,143 or 58143
+ok   bootstrap replications                               = 400 or 400
+ok   largest shift, complete-case (pp)                    = 0.8
+ok   phy_any 2020 (%)                                     = 14.2 or 14.3
+ok   phy_any 2023 (%)                                     = 10.9 or 11.0
+ok   den_any 2020 (%)                                     = 15.3 or 15.4
+ok   den_any 2023 (%)                                     = 9.5 or 9.6
+ok   phy_cost 2020 (%)                                    = 3.5 or 3.6
+ok   phy_cost 2023 (%)                                    = 2.8 or 2.9
+ok   phy_noncost 2020 (%)                                 = 10.7 or 10.8
+ok   phy_noncost 2023 (%)                                 = 8.5 or 8.6
+ok   den_cost 2020 (%)                                    = 7.0 or 7.1
+ok   den_cost 2023 (%)                                    = 4.0
+ok   den_noncost 2020 (%)                                 = 8.8 or 8.9
+ok   den_noncost 2023 (%)                                 = 5.9 or 6.0
+     Model A Cost barrier                     age_group: 65+               RRR 0.72 (0.47-1.11)
+     Model A Cost barrier                     employed                     RRR 1.53 (1.19-1.98)
+     Model A Cost barrier                     income_q5_c: Q1 (lowest)     RRR 3.67 (2.27-5.93)
+     Model A Cost barrier                     insurance3: Medical Aid      RRR 2.18 (1.44-3.29)
+     Model A Cost barrier                     disability                   RRR 1.02 (0.70-1.47)
+     Model A Time and availability barrier    age_group: 65+               RRR 0.57 (0.41-0.80)
+     Model A Time and availability barrier    employed                     RRR 1.66 (1.32-2.09)
+     Model A Time and availability barrier    income_q5_c: Q1 (lowest)     RRR 0.84 (0.59-1.19)
+     Model A Time and availability barrier    insurance3: Medical Aid      RRR 1.19 (0.71-2.01)
+     Model A Time and availability barrier    disability                   RRR 1.42 (1.02-1.97)
+     Model A Compound barrier                 age_group: 65+               RRR 0.22 (0.04-1.13)
+     Model A Compound barrier                 employed                     RRR 4.46 (1.83-10.88)
+     Model A Compound barrier                 income_q5_c: Q1 (lowest)     RRR 1.80 (0.34-9.52)
+     Model A Compound barrier                 insurance3: Medical Aid      RRR 5.78 (0.81-41.03)
+     Model A Compound barrier                 disability                   RRR 1.84 (0.20-17.17)
+     Model B employed                                       OR  1.48 (1.15-1.89)
+     Model B poor_srh                                       OR  1.28 (1.03-1.60)
+     Model B status_t: Compound barrier                     OR  4.44 (2.07-9.52)
+     Model B status_t: Time and availability barrier        OR  0.67 (0.54-0.82)
+     Model B interval: 2021-2022                            OR  2.66 (2.16-3.27)
+     Model B interval: 2022-2023                            OR  1.64 (1.33-2.03)

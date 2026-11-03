@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+title: >-
+  Replication package: cost and non-financial barriers behind unmet healthcare
+  needs in South Korea, 2020-2023
+message: If you use this software or its outputs, please cite it as below.
+type: software
+authors:
+  - family-names: Du
+    given-names: Haichao
+    orcid: https://orcid.org/0009-0006-0839-1888
+    affiliation: >-
+      Department of Physical Therapy, College of Health Sciences,
+      Kyungwoon University, Gumi-si, Republic of Korea
+  - family-names: Huo
+    given-names: Ning
+    orcid: https://orcid.org/0009-0002-6606-6726
+    affiliation: >-
+      Department of Physical Therapy, College of Health Sciences,
+      Kyungwoon University, Gumi-si, Republic of Korea
+version: 1.0.0
+date-released: "2026-11-03"
+license: MIT
+keywords:
+  - unmet healthcare need
+  - latent transition analysis
+  - universal health coverage
+  - Korea Health Panel
+  - health policy
+abstract: >-
+  Code and documentation for a four-wave latent transition analysis of unmet
+  healthcare needs among Korean adults, 2020-2023, using the second-phase Korea
+  Health Panel. The package builds the analysis panel from the restricted KHP
+  SPSS files, fits the latent transition model by weighted EM with bootstrap
+  inference, estimates three-step covariate models, and writes every table,
+  figure and quoted number reported in the manuscript.

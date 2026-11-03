@@ -1,0 +1,44 @@
+Characteristic,Answered all four waves,Answered fewer waves
+Age group,,
+   19-39,25.5,36.4
+   40-64,53.0,46.0
+   65+,21.5,17.6
+Sex,,
+   Men,45.1,50.5
+   Women,54.9,49.5
+Education,,
+   Middle school or less,21.9,16.4
+   High school,30.6,30.7
+   Tertiary,47.4,52.9
+Equivalised household income,,
+   Q1 (lowest),13.3,15.3
+   Q2,15.8,12.6
+   Q3,19.7,16.6
+   Q4,23.8,23.7
+   Q5 (highest),27.5,31.9
+Health coverage,,
+   NHI employee-based,69.1,71.0
+   NHI self-employed,28.0,24.9
+   Medical Aid,2.9,4.1
+Private health insurance,,
+   Yes,81.1,75.5
+   No,18.9,24.5
+Region of residence,,
+   Capital area,48.3,54.7
+   Metropolitan city,19.4,20.5
+   Other province,32.2,24.9
+Economic activity,,
+   In work,68.5,66.4
+   Not in work,31.5,33.6
+Chronic condition,,
+   Yes,42.4,32.8
+   No,57.6,67.2
+Registered disability,,
+   Yes,4.4,5.5
+   No,95.6,94.5
+Self-rated health,,
+   Poor or very poor,14.0,14.6
+   Fair or better,86.0,85.4
+Usual source of care,,
+   Yes,48.6,41.5
+   No,51.4,58.5

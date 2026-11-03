@@ -1,0 +1,16 @@
+{
+  "wave-specific": {
+    "log_likelihood": -28689.216682372244,
+    "BIC": 58156.26430541214,
+    "entropy_R2": 0.8181897242623702,
+    "n_parameters": 84,
+    "smallest_status_pct": 0.52
+  },
+  "time-homogeneous": {
+    "log_likelihood": -28759.658709541956,
+    "BIC": 57926.752673719355,
+    "entropy_R2": 0.8072116652431411,
+    "n_parameters": 44,
+    "smallest_status_pct": 0.52
+  }
+}

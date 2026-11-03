@@ -1,0 +1,99 @@
+{
+  "figure1_panelB_terms": 22,
+  "reason_table_rows": 16,
+  "complete_case_n": 7905,
+  "ipw_model_n": 10476,
+  "max_abs_shift_complete_case_pp": 0.8,
+  "max_abs_shift_ipw_pp": 0.6,
+  "n_baseline_cohort": 10508,
+  "n_person_waves_module_answered": 36605,
+  "n_answered_all_four_waves": 7905,
+  "status_names": [
+    "No unmet need",
+    "Cost barrier",
+    "Time and availability barrier",
+    "Compound barrier"
+  ],
+  "prevalence_2020": [
+    78.2,
+    8.0,
+    13.2,
+    0.6
+  ],
+  "prevalence_2023": [
+    85.1,
+    4.6,
+    9.9,
+    0.5
+  ],
+  "any_unmet_2020": 21.8,
+  "any_unmet_2023": 14.9,
+  "share_never_unmet_4w": 69.0,
+  "share_once_unmet_4w": 15.3,
+  "share_two_or_more_4w": 15.7,
+  "share_three_or_more_4w": 8.0,
+  "share_all_four_4w": 3.6,
+  "stay_prob_mean": {
+    "No unmet need": 0.929,
+    "Cost barrier": 0.606,
+    "Time and availability barrier": 0.503,
+    "Compound barrier": 0.221
+  },
+  "exit_to_no_unmet_mean": {
+    "Cost barrier": 0.34,
+    "Time and availability barrier": 0.47,
+    "Compound barrier": 0.178
+  },
+  "entry_from_no_unmet_mean": 0.071,
+  "entropy_R2": 0.814,
+  "bic_selected": 58143.0,
+  "n_bootstrap": 400,
+  "model_a_n": 10476,
+  "model_b_n_pairs": 3757,
+  "model_b_n_individuals": 2428,
+  "model_b_persist_rate": 50.9,
+  "indicator_prevalence_by_year": {
+    "phy_cost": {
+      "2020": 3.56,
+      "2021": 3.33,
+      "2022": 3.15,
+      "2023": 2.88
+    },
+    "phy_noncost": {
+      "2020": 10.71,
+      "2021": 9.8,
+      "2022": 9.54,
+      "2023": 8.54
+    },
+    "den_cost": {
+      "2020": 7.04,
+      "2021": 5.5,
+      "2022": 5.05,
+      "2023": 4.0
+    },
+    "den_noncost": {
+      "2020": 8.85,
+      "2021": 6.98,
+      "2022": 6.02,
+      "2023": 5.97
+    },
+    "phy_any": {
+      "2020": 14.21,
+      "2021": 14.97,
+      "2022": 12.81,
+      "2023": 10.99
+    },
+    "den_any": {
+      "2020": 15.31,
+      "2021": 12.94,
+      "2022": 11.53,
+      "2023": 9.55
+    },
+    "n_respondents": {
+      "2020": 10508.0,
+      "2021": 9475.0,
+      "2022": 8520.0,
+      "2023": 8102.0
+    }
+  }
+}

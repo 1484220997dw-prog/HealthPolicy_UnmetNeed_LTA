@@ -1,0 +1,18 @@
+# Text files are normalised to LF in the repository and checked out with the
+# platform's own line endings.
+* text=auto
+
+# Binary files must never be line-ending converted: a PDF or TIFF that git
+# "fixes" on checkout is corrupt.
+*.pdf binary
+*.png binary
+*.tif binary
+*.tiff binary
+*.npz binary
+*.xlsx binary
+*.sav binary
+*.ipynb -text
+
+# Generated outputs: keep them in the repository but out of diffs, so a rerun
+# does not bury a code change under thousands of changed numbers.
+output/** linguist-generated=true
