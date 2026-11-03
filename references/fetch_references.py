@@ -75,11 +75,13 @@ REFERENCES: list[tuple[str, str]] = [
     ("10.1037/0012-1649.44.2.446", "22_LanzaCollins2008_lta_procedure"),
     ("10.1080/10705510701575396", "23_Nylund2007_number_of_classes"),
     ("10.1037/tps0000176", "24_NylundGibsonChoi2018_ten_questions_lca"),
-    ("10.1093/pan/mpq025", "25_Vermunt2010_three_step"),
-    ("10.1093/pan/mpu003", "26_Bakk2014_standard_errors_three_step"),
-    ("10.1007/s11336-017-9592-7", "27_BakkKuha2018_two_step"),
-    ("10.1111/j.2517-6161.1977.tb01600.x", "28_Dempster1977_em_algorithm"),
-    ("10.1111/j.1467-9469.2007.00585.x", "29_VaradhanRoland2008_squarem"),
+    # The estimation references are cited before the three-step ones, and the
+    # journal numbers references by first appearance, so they come first here.
+    ("10.1111/j.2517-6161.1977.tb01600.x", "25_Dempster1977_em_algorithm"),
+    ("10.1111/j.1467-9469.2007.00585.x", "26_VaradhanRoland2008_squarem"),
+    ("10.1093/pan/mpq025", "27_Vermunt2010_three_step"),
+    ("10.1093/pan/mpu003", "28_Bakk2014_standard_errors_three_step"),
+    ("10.1007/s11336-017-9592-7", "29_BakkKuha2018_two_step"),
 ]
 
 

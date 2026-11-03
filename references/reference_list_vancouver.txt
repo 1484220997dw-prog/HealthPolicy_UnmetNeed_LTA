@@ -22,8 +22,8 @@
 [22] Lanza ST, Collins LM. A new SAS procedure for latent transition analysis: Transitions in dating and sexual risk behavior. Developmental Psychology 2008;44(2):446-456. doi:10.1037/0012-1649.44.2.446
 [23] Nylund KL, Asparouhov T, Muthén BO. Deciding on the Number of Classes in Latent Class Analysis and Growth Mixture Modeling: A Monte Carlo Simulation Study. Structural Equation Modeling: A Multidisciplinary Journal 2007;14(4):535-569. doi:10.1080/10705510701575396
 [24] Nylund-Gibson K, Choi AY. Ten frequently asked questions about latent class analysis. Translational Issues in Psychological Science 2018;4(4):440-461. doi:10.1037/tps0000176
-[25] Vermunt JK. Latent Class Modeling with Covariates: Two Improved Three-Step Approaches. Political Analysis 2010;18(4):450-469. doi:10.1093/pan/mpq025
-[26] Bakk Z, Oberski DL, Vermunt JK. Relating Latent Class Assignments to External Variables: Standard Errors for Correct Inference. Political Analysis 2014;22(4):520-540. doi:10.1093/pan/mpu003
-[27] Bakk Z, Kuha J. Two-Step Estimation of Models Between Latent Classes and External Variables. Psychometrika 2018;83(4):871-892. doi:10.1007/s11336-017-9592-7
-[28] Dempster AP, Laird NM, Rubin DB. Maximum Likelihood from Incomplete Data Via the  EM  Algorithm. Journal of the Royal Statistical Society Series B: Statistical Methodology 1977;39(1):1-22. doi:10.1111/j.2517-6161.1977.tb01600.x
-[29] VARADHAN R, ROLAND C. Simple and Globally Convergent Methods for Accelerating the Convergence of Any EM Algorithm. Scandinavian Journal of Statistics 2008;35(2):335-353. doi:10.1111/j.1467-9469.2007.00585.x
+[25] Dempster AP, Laird NM, Rubin DB. Maximum Likelihood from Incomplete Data Via the  EM  Algorithm. Journal of the Royal Statistical Society Series B: Statistical Methodology 1977;39(1):1-22. doi:10.1111/j.2517-6161.1977.tb01600.x
+[26] VARADHAN R, ROLAND C. Simple and Globally Convergent Methods for Accelerating the Convergence of Any EM Algorithm. Scandinavian Journal of Statistics 2008;35(2):335-353. doi:10.1111/j.1467-9469.2007.00585.x
+[27] Vermunt JK. Latent Class Modeling with Covariates: Two Improved Three-Step Approaches. Political Analysis 2010;18(4):450-469. doi:10.1093/pan/mpq025
+[28] Bakk Z, Oberski DL, Vermunt JK. Relating Latent Class Assignments to External Variables: Standard Errors for Correct Inference. Political Analysis 2014;22(4):520-540. doi:10.1093/pan/mpu003
+[29] Bakk Z, Kuha J. Two-Step Estimation of Models Between Latent Classes and External Variables. Psychometrika 2018;83(4):871-892. doi:10.1007/s11336-017-9592-7

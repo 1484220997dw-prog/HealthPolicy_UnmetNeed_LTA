@@ -69,6 +69,6 @@ restricted data, and every table, figure and quoted number are openly available 
 
 ## Word count
 
-Manuscript text (Background to Conclusions, including the research-in-context box):
-see `docs/SUBMISSION_CHECKLIST.md` for the count as submitted. Abstract: 248 words.
-Tables and figures: 3 tables and 1 figure (limit for full-length articles: 4 in total).
+Manuscript text, Background to Conclusion and including the research-in-context box:
+3,648 words (limit 4,000). Abstract: 242 words (limit 250). Tables and figures:
+3 tables and 1 figure (limit 4 in total). References: 29.

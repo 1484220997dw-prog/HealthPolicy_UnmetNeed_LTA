@@ -1,20 +1,20 @@
 # Cost and non-financial barriers to healthcare in South Korea, 2020–2023: a four-wave latent transition analysis
 
-*Anonymised manuscript for double-blind review. Every estimate quoted below is checked against the analysis output by `src/07_check_manuscript.py`, whose report is in `output/logs/manuscript_audit.txt`.*
+<!-- Working note, not part of the submission: every estimate below is checked against the analysis output by src/07_check_manuscript.py. -->
 
 ---
 
 ## Abstract
 
-**Background:** Countries monitor unmet healthcare need as an annual prevalence figure. They show how many people went without care they believed they needed, not whether the same people keep going without it, and rarely separate barriers money can remove from barriers it cannot. South Korea is an informative case: near-universal enrolment combined with high cost sharing and a thin dental benefit.
+**Background:** Countries monitor unmet healthcare need as an annual prevalence figure. Such figures show how many people went without needed care, not whether the same people keep going without it, and rarely separate barriers money can remove from barriers it cannot. South Korea is an informative case: near-universal enrolment combined with high cost sharing and a thin dental benefit.
 
 **Objective:** To establish how long unmet healthcare need lasts, and whether cost-related and non-financial barriers behave as one phenomenon or two.
 
-**Methods:** Secondary longitudinal analysis of four annual waves of the Korea Health Panel, 2020–2023, following 10,508 adults aged 19 and over (36,605 person-wave observations). Forgone physician and dental care were each classified by whether the stated barrier was cost, giving four binary indicators. A latent transition model with measurement invariance across waves was fitted by weighted maximum likelihood with 400 bootstrap replications, followed by three-step covariate models.
+**Methods:** Longitudinal analysis of four annual waves of the Korea Health Panel, 2020–2023, following 10,508 adults aged 19 and over (36,605 person-wave observations). Forgone physician and dental care were each classified by whether the stated barrier was cost, giving four binary indicators. A latent transition model with measurement invariance across waves was fitted by weighted maximum likelihood, with 400 bootstrap replications and three-step covariate models.
 
 **Results:** Any unmet need fell from 21.8% to 14.9%. Four statuses fitted the data: no unmet need, a cost barrier concentrated in dental care, a time and availability barrier, and a small compound status. Movement between the two single-barrier statuses was rare (0.1–6.5% per year). Cost barriers tracked income (lowest versus highest quintile, relative risk ratio 3.67, 95% CI 2.27–5.93); time barriers did not (0.84, 0.59–1.19).
 
-**Conclusions:** Financial protection and service organisation reach largely different populations and cannot substitute for one another. Systems should report unmet need by barrier type and by persistence, not as a single annual rate.
+**Conclusions:** Financial protection and service organisation reach different populations and cannot substitute for one another. Systems should report unmet need by barrier type and persistence, not as a single annual rate.
 
 **Keywords:** unmet healthcare need; universal coverage; latent transition analysis; financial protection; dental care; Korea
 
@@ -66,9 +66,9 @@ We fitted a latent transition model \[21,22\]. Each respondent occupies one of *
 
 where the sum runs over every sequence of statuses (s₁, s₂, s₃, s₄) the respondent could have occupied, and Oᵢₜ is the set of indicators observed for that person-wave, so that an unanswered wave contributes to the transition part but not the measurement part.
 
-The number of statuses was chosen on the Bayesian information criterion, the size and interpretability of the resulting statuses, and classification quality measured by relative entropy \[23,24\]. Models with one to six statuses were fitted with wave-specific and with time-homogeneous transitions. Estimation used weighted expectation–maximisation \[28\] accelerated by squared extrapolation \[29\], with 60 random starting values screened and the best four iterated to convergence. The selected maximum was reached by 35 of the 60 screened starts and by all four of the polished ones, so it is not a local solution. Confidence intervals come from 400 non-parametric bootstrap replications over individuals, with each replicate's statuses matched to those of the point estimate by their item-response profiles.
+The number of statuses was chosen on the Bayesian information criterion, the size and interpretability of the resulting statuses, and classification quality measured by relative entropy \[23,24\]. Models with one to six statuses were fitted with wave-specific and with time-homogeneous transitions. Estimation used weighted expectation–maximisation \[25\] accelerated by squared extrapolation \[26\], with 60 random starting values screened and the best four iterated to convergence. The selected maximum was reached by 35 of the 60 screened starts and by all four of the polished ones, so it is not a local solution. Confidence intervals come from 400 non-parametric bootstrap replications over individuals, with each replicate's statuses matched to those of the point estimate by their item-response profiles.
 
-Covariate associations were estimated in a three-step design \[25–27\]: the measurement model first, then assignment of respondents to statuses, then weighted regression. Model A is a multinomial logit for baseline status, reported as relative risk ratios against having no unmet need. Model B is a logit for being in any unmet-need status one year later, among person-waves that begin in one, with interval indicators and cluster-robust standard errors by individual. Both models were re-estimated weighting each respondent by the posterior probability of each status instead of using the modal assignment; results were materially unchanged (Appendix Table A5).
+Covariate associations were estimated in a three-step design \[27–29\]: the measurement model first, then assignment of respondents to statuses, then weighted regression. Model A is a multinomial logit for baseline status, reported as relative risk ratios against having no unmet need. Model B is a logit for being in any unmet-need status one year later, among person-waves that begin in one, with interval indicators and cluster-robust standard errors by individual. Both models were re-estimated weighting each respondent by the posterior probability of each status instead of using the modal assignment; results were materially unchanged (Appendix Table A5).
 
 Prespecified sensitivity analyses restricted the sample to the 7,905 adults who answered all four waves, and reweighted that group by the inverse of a modelled probability of responding to all four waves (Appendix Tables A6–A8).
 
@@ -94,7 +94,7 @@ Transitions were markedly asymmetric (Table 3). Averaged over the three interval
 
 The two single-barrier statuses barely exchanged members. Movement from cost to time and availability ranged from 1.2% to 6.5% a year, and in the other direction from 0.1% to 2.5%. Someone whose barrier was money in one year was very unlikely to report a non-financial barrier the next, and vice versa.
 
-Among the 7,905 adults who answered all four waves, 69.0% were never in an unmet-need status, 15.3% were in one in a single year, and 15.7% in two or more years, including 8.0% in three or more and 3.6% in all four. Conditional on being in an unmet-need status, the probability of still being in one a year later was 50.9%, and that conditional persistence rose over the window: relative to 2020–2021, the adjusted odds of remaining were 2.66 (95% CI 2.16–3.27) for 2021–2022 and 1.64 (1.33–2.03) for 2022–2023. The headline rate therefore fell because fewer people entered, not because more of those already affected got out.
+Among the 7,905 adults who answered all four waves, 69.0% were never in an unmet-need status, 15.3% were in one in a single year, and 15.7% in two or more years, including 8.0% in three or more and 3.6% in all four. Conditional on being in an unmet-need status, the probability of still being in one a year later was 50.9%, and it was higher in both later intervals than in the first: relative to 2020–2021, the adjusted odds of remaining were 2.66 (95% CI 2.16–3.27) for 2021–2022 and 1.64 (1.33–2.03) for 2022–2023. The headline rate therefore fell because fewer people entered, not because more of those already affected got out.
 
 ### 3.4 Who is in each status, and who stays
 
@@ -114,9 +114,9 @@ These results extend the Korean literature in a specific way. Chung established 
 
 The policy reading follows directly. Benefit expansion and service redesign are not alternative routes to the same destination. Expanding the dental benefit package would reach a population that is older, poorer, less educated and disproportionately covered by Medical Aid — and would address the barrier that lasts longer. Measures aimed at time and availability, such as extended opening hours, same-day appointment capacity and employment protections for medical visits, would reach working adults in the upper half of the income distribution, among whom income tells us nothing about risk. Since the groups scarcely overlap, progress on one will not show up as progress on the other, and a reform evaluated on the pooled indicator may appear to have failed when it has succeeded on the barrier it targeted. Korea's own experience illustrates the point: the 2017 expansion has been credited with lower amenable mortality \[18\] while reducing spending on non-covered services only partially \[17\].
 
-The compound status deserves attention out of proportion to its size. At 0.5% of adults it still describes a six-figure number of people nationally, it is the status people are least likely to leave for having no unmet need at all, and it is concentrated among young working adults in poor self-rated health. Its members typically move into one of the single-barrier statuses rather than out of unmet need, which is what one would expect if two barriers must be removed in sequence. For targeting purposes, a system that reports only annual prevalence by income cannot see this group.
+The compound status deserves attention out of proportion to its size. At 0.5% of adults it is small as a share but not as a count, it is the status people are least likely to leave for having no unmet need at all, and it is concentrated among young working adults in poor self-rated health. Its members typically move into one of the single-barrier statuses rather than out of unmet need, which is what one would expect if two barriers must be removed in sequence. For targeting purposes, a system that reports only annual prevalence by income cannot see this group.
 
-Our findings also bear on how unmet need is monitored internationally. Cross-national comparability of the indicator is already known to be fragile, with differences in question wording and in reporting norms producing different levels in surveys of the same country \[6–8\]. The present results suggest a second problem that is independent of wording: a single annual rate confounds the frequency of the condition with its duration, and two systems with identical rates can differ substantially in how much repeated deprivation they contain. Reporting the share of the population with unmet need in two or more of a run of survey years, by barrier type, would be a modest and feasible addition to existing survey programmes, since the panel components needed already exist in several of them.
+Our findings also bear on how unmet need is monitored internationally. Cross-national comparability of the indicator is already known to be fragile, with differences in question wording and in reporting norms producing different levels in surveys of the same country \[6–8\]. The present results suggest a second problem that is independent of wording: a single annual rate confounds the frequency of the condition with its duration, and two systems with identical rates can differ substantially in how much repeated deprivation they contain. Reporting the share of the population with unmet need in two or more years of a four-year panel, by barrier type, would be a modest and feasible addition to existing survey programmes, since the panel components needed already exist in several of them.
 
 ### 4.1 Limitations
 
@@ -124,7 +124,7 @@ The measure is subjective. It records care that respondents believed they needed
 
 The design is descriptive. The window coincides both with the receding pandemic and with continuing benefit expansion, and we make no attempt to attribute the fall in prevalence to either; the transition estimates describe what happened, not what caused it.
 
-Attrition is substantial, with 75% of the baseline cohort answering all four waves. We addressed this with full-information maximum likelihood, complete-case analysis and inverse probability of response weighting, and the three agree closely, but all three rest on the assumption that attrition is unrelated to unmet need given the observed covariates. Panel conditioning may also matter: the second phase of the KHP began in 2019, so our window starts early in the panel's life, when reporting may still be settling.
+One adult in four did not answer all four waves: 7,905 of the 10,508 in the baseline cohort did. We addressed this with full-information maximum likelihood, complete-case analysis and inverse probability of response weighting, and the three agree closely, but all three rest on the assumption that attrition is unrelated to unmet need given the observed covariates. Panel conditioning may also matter: the second phase of the KHP began in 2019, so our window starts early in the panel's life, when reporting may still be settling.
 
 Three further constraints should be noted. The compound status is estimated from few respondents, so its transition probabilities carry wide intervals and its covariate associations — including an apparently protective association with chronic conditions, which most plausibly reflects the status being young rather than healthy — should be treated as provisional. Our indicators omit prescription medicines, where cost-related non-adherence was reported by too few respondents to model. And the findings describe one high-income single-payer system with unusually high cost sharing and an unusually thin dental benefit; the separation of barrier types should transfer to systems with a comparable split between covered and non-covered care, but the balance between them need not.
 
@@ -138,16 +138,70 @@ For policy-makers in Korea, the specific implications are to extend the dental b
 
 ## Tables and figure
 
-**Table 1\.** Characteristics of the 2020 baseline cohort, overall and by latent status (weighted percentages; unweighted *n*). *Source:* `output/tables/table1_baseline_characteristics.csv`. *p*\-values are from Pearson tests on weighted shares rescaled to the Kish effective sample size.
+**Table 1\.** Characteristics of the 2020 baseline cohort, overall and by latent status (weighted percentages; unweighted *n*). *p*\-values are from Pearson tests on weighted shares rescaled to the Kish effective sample size.
 
-**Table 2\.** Item-response probabilities, status prevalence by year and classification quality for the four-status model (95% bootstrap intervals from 400 replications). *Source:* `output/tables/table2_measurement_model.csv`.
+**Table 2\.** Item-response probabilities, status prevalence by year and classification quality for the four-status model (95% bootstrap intervals from 400 replications).
 
-**Table 3\.** Annual transition probabilities between latent statuses, 2020–2021, 2021–2022 and 2022–2023 (95% bootstrap intervals). *Source:* `output/tables/table3_transition_matrices.csv`.
+**Table 3\.** Annual transition probabilities between latent statuses, 2020–2021, 2021–2022 and 2022–2023 (95% bootstrap intervals).
 
-**Figure 1\.** (A) Prevalence of each unmet-need status by year, with 95% bootstrap intervals; the share of the cohort with no unmet need is printed beneath each year rather than plotted, so that the three unmet-need statuses remain legible. (B) Adjusted odds of being in an unmet-need status one year later among person-waves that begin in one, from Model B, with interval indicators omitted from the plot. *Source:* `output/figures/figure1_status_prevalence_and_persistence.pdf` (vector) and `.tif` (300 dpi).
+**Figure 1\.** (A) Prevalence of each unmet-need status by year, with 95% bootstrap intervals; the share of the cohort with no unmet need is printed beneath each year rather than plotted, so that the three unmet-need statuses remain legible. (B) Adjusted odds of being in an unmet-need status one year later among person-waves that begin in one, from Model B, with interval indicators omitted from the plot.
 
 ## References
 
-See `references/reference_list_vancouver.txt` for the formatted list; `references/` holds one PDF per reference and `references/references.bib` the BibTeX records.
+[1] Carr W, Wolfe S. Unmet needs as sociomedical indicators. Int J Health Serv 1976;6(3):417–30.
 
-\[1\] Carr W, Wolfe S. Unmet needs as sociomedical indicators. Int J Health Serv 1976;6(3):417–30. \[2\] Andersen RM. Revisiting the behavioral model and access to medical care: does it matter? J Health Soc Behav 1995;36(1):1–10. \[3\] Gulliford M, Figueroa-Munoz J, Morgan M, Hughes D, Gibson B, Beech R, et al. What does 'access to health care' mean? J Health Serv Res Policy 2002;7(3):186–8. \[4\] Levesque JF, Harris MF, Russell G. Patient-centred access to health care: conceptualising access at the interface of health systems and populations. Int J Equity Health 2013;12:18. \[5\] Allin S, Grignon M, Le Grand J. Subjective unmet need and utilization of health care services in Canada: what are the equity implications? Soc Sci Med 2010;70(3):465–72. \[6\] OECD. Health for everyone? Social inequalities in health and health systems. Paris: OECD Publishing; 2019\. \[7\] OECD, European Commission. Health at a glance: Europe 2022\. Paris: OECD Publishing; 2022\. \[8\] OECD. Health at a glance 2023\. Paris: OECD Publishing; 2023\. \[9\] World Health Organization, World Bank. Tracking universal health coverage: 2023 global monitoring report. Geneva: WHO; 2023\. \[10\] Kwon S. Thirty years of national health insurance in South Korea: lessons for achieving universal health care coverage. Health Policy Plan 2009;24(1):63–71. \[11\] Kim Y, Yang B. Relationship between catastrophic health expenditures and household incomes and expenditure patterns in South Korea. Health Policy 2011;100(2–3):239–46. \[12\] Ko H. Unmet healthcare needs and health status: panel evidence from Korea. Health Policy 2016;120(6):646–53. \[13\] Hwang J. Understanding reasons for unmet health care needs in Korea: what are health policy implications? BMC Health Serv Res 2018;18:557. \[14\] Chung W. Characteristics associated with financial or non-financial barriers to healthcare in a universal health insurance system: a longitudinal analysis of Korea Health Panel survey data. Front Public Health 2022;10:828318. \[15\] Kim NH, Kim CB, Shin HS. Inequality in unmet dental care needs among South Korean adults. BMC Oral Health 2017;17:80. \[16\] Sohn M, Che X, Park HJ. Unmet dental care needs among Korean National Health Insurance beneficiaries based on income inequalities: results from five waves of a population-based panel study. Healthcare 2020;8(2):124. \[17\] Ji S, Lee M, Choi M. The impact of the expanded health insurance coverage policy on healthcare spending: evidence from South Korea. Int J Equity Health 2024;23:122. \[18\] Eun SJ. Evaluating the effects of the 2017 National Health Insurance coverage expansion on amenable mortality in South Korea. Soc Sci Med 2024;344:116574. \[19\] Kim M, Shin D, Shin H. Effects of catastrophic coverage expansion on out-of-pocket spending for non-covered services and financial equity: evidence from South Korea's National Health Insurance. Healthcare 2026;14(3):302. \[20\] Smolić Š, Čipin I, Međimurec P. Access to healthcare for people aged 50+ in Europe during the COVID-19 outbreak. Eur J Ageing 2021;19(4):793–809. \[21\] Collins LM, Lanza ST. Latent class and latent transition analysis: with applications in the social, behavioral, and health sciences. Hoboken: Wiley; 2010\. \[22\] Lanza ST, Collins LM. A new SAS procedure for latent transition analysis: transitions in dating and sexual risk behavior. Dev Psychol 2008;44(2):446–56. \[23\] Nylund KL, Asparouhov T, Muthén BO. Deciding on the number of classes in latent class analysis and growth mixture modeling: a Monte Carlo simulation study. Struct Equ Modeling 2007;14(4):535–69. \[24\] Nylund-Gibson K, Choi AY. Ten frequently asked questions about latent class analysis. Transl Issues Psychol Sci 2018;4(4):440–61. \[25\] Vermunt JK. Latent class modeling with covariates: two improved three-step approaches. Polit Anal 2010;18(4):450–69. \[26\] Bakk Z, Oberski DL, Vermunt JK. Relating latent class assignments to external variables: standard errors for correct inference. Polit Anal 2014;22(4):520–40. \[27\] Bakk Z, Kuha J. Two-step estimation of models between latent classes and external variables. Psychometrika 2018;83(4):871–92. \[28\] Dempster AP, Laird NM, Rubin DB. Maximum likelihood from incomplete data via the EM algorithm. J R Stat Soc Series B Stat Methodol 1977;39(1):1–22. \[29\] Varadhan R, Roland C. Simple and globally convergent methods for accelerating the convergence of any EM algorithm. Scand J Stat 2008;35(2):335–53.
+[2] Andersen RM. Revisiting the behavioral model and access to medical care: does it matter? J Health Soc Behav 1995;36(1):1–10.
+
+[3] Gulliford M, Figueroa-Munoz J, Morgan M, Hughes D, Gibson B, Beech R, et al. What does 'access to health care' mean? J Health Serv Res Policy 2002;7(3):186–8.
+
+[4] Levesque JF, Harris MF, Russell G. Patient-centred access to health care: conceptualising access at the interface of health systems and populations. Int J Equity Health 2013;12:18.
+
+[5] Allin S, Grignon M, Le Grand J. Subjective unmet need and utilization of health care services in Canada: what are the equity implications? Soc Sci Med 2010;70(3):465–72.
+
+[6] OECD. Health for everyone? Social inequalities in health and health systems. Paris: OECD Publishing; 2019.
+
+[7] OECD, European Commission. Health at a glance: Europe 2022. Paris: OECD Publishing; 2022.
+
+[8] OECD. Health at a glance 2023. Paris: OECD Publishing; 2023.
+
+[9] World Health Organization, World Bank. Tracking universal health coverage: 2023 global monitoring report. Geneva: WHO; 2023.
+
+[10] Kwon S. Thirty years of national health insurance in South Korea: lessons for achieving universal health care coverage. Health Policy Plan 2009;24(1):63–71.
+
+[11] Kim Y, Yang B. Relationship between catastrophic health expenditures and household incomes and expenditure patterns in South Korea. Health Policy 2011;100(2–3):239–46.
+
+[12] Ko H. Unmet healthcare needs and health status: panel evidence from Korea. Health Policy 2016;120(6):646–53.
+
+[13] Hwang J. Understanding reasons for unmet health care needs in Korea: what are health policy implications? BMC Health Serv Res 2018;18:557.
+
+[14] Chung W. Characteristics associated with financial or non-financial barriers to healthcare in a universal health insurance system: a longitudinal analysis of Korea Health Panel survey data. Front Public Health 2022;10:828318.
+
+[15] Kim NH, Kim CB, Shin HS. Inequality in unmet dental care needs among South Korean adults. BMC Oral Health 2017;17:80.
+
+[16] Sohn M, Che X, Park HJ. Unmet dental care needs among Korean National Health Insurance beneficiaries based on income inequalities: results from five waves of a population-based panel study. Healthcare 2020;8(2):124.
+
+[17] Ji S, Lee M, Choi M. The impact of the expanded health insurance coverage policy on healthcare spending: evidence from South Korea. Int J Equity Health 2024;23:122.
+
+[18] Eun SJ. Evaluating the effects of the 2017 National Health Insurance coverage expansion on amenable mortality in South Korea. Soc Sci Med 2024;344:116574.
+
+[19] Kim M, Shin D, Shin H. Effects of catastrophic coverage expansion on out-of-pocket spending for non-covered services and financial equity: evidence from South Korea's National Health Insurance. Healthcare 2026;14(3):302.
+
+[20] Smolić Š, Čipin I, Međimurec P. Access to healthcare for people aged 50+ in Europe during the COVID-19 outbreak. Eur J Ageing 2021;19(4):793–809.
+
+[21] Collins LM, Lanza ST. Latent class and latent transition analysis: with applications in the social, behavioral, and health sciences. Hoboken: Wiley; 2010.
+
+[22] Lanza ST, Collins LM. A new SAS procedure for latent transition analysis: transitions in dating and sexual risk behavior. Dev Psychol 2008;44(2):446–56.
+
+[23] Nylund KL, Asparouhov T, Muthén BO. Deciding on the number of classes in latent class analysis and growth mixture modeling: a Monte Carlo simulation study. Struct Equ Modeling 2007;14(4):535–69.
+
+[24] Nylund-Gibson K, Choi AY. Ten frequently asked questions about latent class analysis. Transl Issues Psychol Sci 2018;4(4):440–61.
+
+[25] Dempster AP, Laird NM, Rubin DB. Maximum likelihood from incomplete data via the EM algorithm. J R Stat Soc Series B Stat Methodol 1977;39(1):1–22.
+
+[26] Varadhan R, Roland C. Simple and globally convergent methods for accelerating the convergence of any EM algorithm. Scand J Stat 2008;35(2):335–53.
+
+[27] Vermunt JK. Latent class modeling with covariates: two improved three-step approaches. Polit Anal 2010;18(4):450–69.
+
+[28] Bakk Z, Oberski DL, Vermunt JK. Relating latent class assignments to external variables: standard errors for correct inference. Polit Anal 2014;22(4):520–40.
+
+[29] Bakk Z, Kuha J. Two-step estimation of models between latent classes and external variables. Psychometrika 2018;83(4):871–92.

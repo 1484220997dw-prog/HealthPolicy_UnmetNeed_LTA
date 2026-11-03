@@ -187,6 +187,11 @@ def add_runs(paragraph, text: str) -> None:
 # --------------------------------------------------------------------------- #
 # Block parsing
 # --------------------------------------------------------------------------- #
+# A numbered reference entry, which must become a paragraph of its own rather
+# than being run together with the next one.
+REF_ENTRY = re.compile(r"^\\?\[\d+\\?\]\s")
+
+
 def is_block_start(line: str) -> bool:
     """True for a line that opens a new block rather than continuing a paragraph.
 
@@ -196,7 +201,8 @@ def is_block_start(line: str) -> bool:
     s = line.strip()
     return (s.startswith(("#", ">", "|"))
             or s.startswith(("* ", "- "))
-            or s in ("---", "***", "___"))
+            or s in ("---", "***", "___")
+            or bool(REF_ENTRY.match(s)))
 
 
 def split_row(line: str) -> list[str]:
@@ -252,6 +258,8 @@ def convert(md_path: Path, out_path: Path, with_tables: bool = False) -> int:
     text = md_path.read_text(encoding="utf-8")
     if STOP_MARKER in text:
         text = text.split(STOP_MARKER, 1)[0]
+    # HTML comments are working notes for the authors and never reach the journal.
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
     lines = text.splitlines()
     doc = new_document()
     add_page_numbers(doc)
@@ -301,6 +309,22 @@ def convert(md_path: Path, out_path: Path, with_tables: bool = False) -> int:
                     body += " " + lines[i].strip()
                     i += 1
                 add_runs(para, body)
+            n_blocks += 1
+            continue
+
+        if REF_ENTRY.match(stripped):
+            body = [stripped]
+            i += 1
+            while (i < len(lines) and lines[i].strip()
+                   and not is_block_start(lines[i])):
+                body.append(lines[i].strip())
+                i += 1
+            para = doc.add_paragraph()
+            para.paragraph_format.left_indent = Inches(0.35)
+            para.paragraph_format.first_line_indent = Inches(-0.35)
+            para.paragraph_format.space_after = Pt(4)
+            para.paragraph_format.line_spacing = 1.0
+            add_runs(para, " ".join(body))
             n_blocks += 1
             continue
 

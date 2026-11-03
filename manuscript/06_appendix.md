@@ -152,9 +152,8 @@ discard the uncertainty in the assignment.
 | A9 | The five-status solution, for comparison with the selected model | `tableA9_five_status_solution.csv` |
 | A10 | Models A and B side by side, one row per characteristic | `tableA10_covariates_combined.csv` |
 
-All ten are reproduced in full in section E below, which `src/08_make_docx.py` builds
-from the CSV files when it produces the Word version, so the submitted appendix is
-complete on its own.
+All ten are reproduced in full in section E below, so this appendix is complete on its
+own; the CSV files are provided as well for readers who want the underlying numbers.
 
 ### Notes on the sensitivity analyses
 

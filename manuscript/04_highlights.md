@@ -24,5 +24,5 @@ requires. The file uploaded to Editorial Manager must have "highlights" in its n
 | 5 | 81 |
 
 Bullet 1 states the problem, bullets 2–4 report main findings, and bullet 5 gives the
-policy implication, as the journal requires. `src/07_check_manuscript.py` re-counts the
+policy implication, as the journal requires. The check script in the repository re-counts the
 characters, so re-run it after any edit.
