@@ -64,28 +64,30 @@ excluded from the indicators; this is stated as a limitation in the main text.
 
 ### B.1 Likelihood
 
-Let *S*<sub>it</sub> ∈ {1,…,*K*} be the latent status of individual *i* at wave *t*,
-*t* = 1,…,4, and *Y*<sub>itj</sub> ∈ {0,1} the *j*-th of *J* = 4 indicators. The model
-has three sets of parameters: initial status probabilities δ<sub>k</sub> = P(*S*<sub>i1</sub> = *k*);
-wave-specific transition probabilities τ<sub>t,kl</sub> = P(*S*<sub>i,t+1</sub> = *l* | *S*<sub>it</sub> = *k*);
-and item-response probabilities ρ<sub>jk</sub> = P(*Y*<sub>itj</sub> = 1 | *S*<sub>it</sub> = *k*),
-constrained equal across waves.
+Notation: Sᵢₜ ∈ {1,…,K} is the latent status of individual *i* at wave *t*, for
+*t* = 1,…,4, and Yᵢₜⱼ ∈ {0,1} is the *j*-th of *J* = 4 indicators. The model has three
+sets of parameters:
 
-With O<sub>it</sub> the set of indicators observed for person-wave (*i*,*t*), the
+* initial status probabilities δₖ = P(Sᵢ₁ = k);
+* wave-specific transition probabilities τₜ,ₖₗ = P(Sᵢ,ₜ₊₁ = l ∣ Sᵢₜ = k);
+* item-response probabilities ρⱼₖ = P(Yᵢₜⱼ = 1 ∣ Sᵢₜ = k), constrained equal across
+  waves.
+
+Writing Oᵢₜ for the set of indicators observed for person-wave (*i*, *t*), the
 individual likelihood is
 
-*L*<sub>i</sub> = Σ<sub>s₁=1</sub><sup>K</sup> … Σ<sub>s₄=1</sub><sup>K</sup>
-  δ<sub>s₁</sub>
-  ∏<sub>t=1</sub><sup>3</sup> τ<sub>t,s<sub>t</sub>s<sub>t+1</sub></sub>
-  ∏<sub>t=1</sub><sup>4</sup> ∏<sub>j∈O<sub>it</sub></sub>
-  ρ<sub>js<sub>t</sub></sub><sup>y<sub>itj</sub></sup> (1 − ρ<sub>js<sub>t</sub></sub>)<sup>1−y<sub>itj</sub></sup>
+> Lᵢ = Σ₍ₛ₁,…,ₛ₄₎ δ(s₁) · ∏ₜ₌₁³ τₜ(sₜ₊₁ ∣ sₜ) · ∏ₜ₌₁⁴ ∏ⱼ∈Oᵢₜ ρⱼ(sₜ)^yᵢₜⱼ · [1 − ρⱼ(sₜ)]^(1 − yᵢₜⱼ)
 
-and the estimated log-likelihood is Σ<sub>i</sub> *w*<sub>i</sub> log *L*<sub>i</sub>,
-with *w*<sub>i</sub> the baseline longitudinal weight rescaled to mean one. A wave the
-respondent did not answer has O<sub>it</sub> = ∅, so its measurement product equals 1
-and the wave contributes only through the transition terms. This is full-information
-maximum likelihood under the assumption that missingness is independent of the
-unobserved responses given the observed ones.
+where the outer sum runs over all K⁴ sequences of statuses (s₁, s₂, s₃, s₄), δ(s₁) is
+the initial probability of status s₁, τₜ(sₜ₊₁ ∣ sₜ) is the probability of moving from
+sₜ at wave *t* to sₜ₊₁ at wave *t* + 1, and ρⱼ(sₜ) is the probability that indicator *j*
+equals 1 for someone in status sₜ.
+
+The estimated log-likelihood is Σᵢ wᵢ · log Lᵢ, with wᵢ the baseline longitudinal weight
+rescaled to mean one. A wave the respondent did not answer has Oᵢₜ = ∅, so its
+measurement product equals 1 and the wave contributes only through the transition terms.
+This is full-information maximum likelihood under the assumption that missingness is
+independent of the unobserved responses given the observed ones.
 
 Free parameters number (*K* − 1) + 3*K*(*K* − 1) + *JK* for wave-specific transitions,
 and (*K* − 1) + *K*(*K* − 1) + *JK* when transitions are held constant across waves; for

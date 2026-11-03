@@ -24,6 +24,18 @@ from khp_lta import config as cfg
 
 MANUSCRIPT = cfg.PROJECT_ROOT / "manuscript" / "05_manuscript.md"
 
+
+def read_manuscript() -> str:
+    """The manuscript text with Markdown escaping removed.
+
+    Editors and Markdown formatters legitimately escape characters that could be
+    read as markup, turning "1. Background" into "1\\. Background" and "[21,22]"
+    into "\\[21,22\\]". Undoing that here keeps the heading and citation matching
+    below from breaking the first time the file is opened in another tool.
+    """
+    raw = MANUSCRIPT.read_text(encoding="utf-8")
+    return re.sub(r"\\([.\[\]|*_<>~`#+=-])", r"\1", raw)
+
 # Sections counted towards the journal's limit, by their heading text.
 COUNTED = ("Research in context", "1. Background", "2. Methods", "3. Results",
            "4. Discussion", "5. Conclusion")
@@ -67,7 +79,7 @@ def word_count() -> dict[str, int]:
     Headings are not counted, and nor is anything after the Conclusion (tables,
     figure captions and references are excluded from the limit).
     """
-    text = MANUSCRIPT.read_text(encoding="utf-8")
+    text = read_manuscript()
     heads = [(m.start(), m.end(), m.group(1).strip())
              for m in re.finditer(r"^#+\s+(.*)$", text, flags=re.M)]
     counts, total = {}, 0
@@ -92,7 +104,7 @@ def word_count() -> dict[str, int]:
 
 def audit() -> list[str]:
     nums = json.loads(cfg.NUMBERS_JSON.read_text(encoding="utf-8"))
-    text = MANUSCRIPT.read_text(encoding="utf-8")
+    text = read_manuscript()
     out = []
 
     def check(label: str, value, scale: float = 1.0, decimals: int = 1,
@@ -189,7 +201,7 @@ def audit() -> list[str]:
 
 def limits() -> list[str]:
     """The journal's other hard limits: abstract, box, title, highlights."""
-    text = MANUSCRIPT.read_text(encoding="utf-8")
+    text = read_manuscript()
     out = []
 
     ab = text[text.index("## Abstract"):text.index("**Keywords:**")]
@@ -205,7 +217,9 @@ def limits() -> list[str]:
     n = len(title.replace("—", " ").split())
     out.append(f"{'ok  ' if n <= 20 else 'OVER'} title{'':<25} {n:>4} / 20 words")
 
-    hl = (cfg.PROJECT_ROOT / "manuscript" / "04_highlights.md").read_text(encoding="utf-8")
+    hl_raw = (cfg.PROJECT_ROOT / "manuscript" / "04_highlights.md").read_text(
+        encoding="utf-8")
+    hl = re.sub(r"\\(.)", r"\1", hl_raw)
     bullets = [l[2:].strip() for l in hl.splitlines() if l.startswith("- ")]
     worst = max((len(b) for b in bullets), default=0)
     out.append(f"{'ok  ' if len(bullets) <= 5 and worst <= 85 else 'OVER'} "
