@@ -6,9 +6,9 @@ Two covariate models on top of the fitted measurement model (three-step LTA):
   Model B  weighted logit for remaining in any unmet-need status one year later,
            among person-waves that start in an unmet-need status
 
-Writes output/tables/table4_covariates.csv, the two full regression tables as
-appendix files, and a sensitivity version that weights every respondent by the
-posterior probability of each status instead of using modal assignment.
+Writes the two full regression tables as appendix files, a combined view of
+both (Table A10), and a sensitivity version that weights every respondent by
+the posterior probability of each status instead of using modal assignment.
 """
 from __future__ import annotations
 
@@ -181,7 +181,7 @@ def main() -> None:
     tb2["estimate"] = tb2.apply(fmt, axis=1, col="OR")
     tb2.to_csv(cfg.TABLES_DIR / "tableA5_model_b_posterior_weighted.csv", index=False)
 
-    # ---- Table 4: the two models side by side, in reading order -----------
+    # ---- Table A10: the two models side by side, in reading order ---------
     rows = []
     order = [t for t in PRETTY if t in set(ta.term) | set(tb.term)]
     for term in order:
@@ -193,8 +193,8 @@ def main() -> None:
         row["OR: stays unmet next year"] = (fmt(sub.iloc[0], "OR")
                                             if len(sub) else "")
         rows.append(row)
-    table4 = pd.DataFrame(rows)
-    table4.to_csv(cfg.TABLES_DIR / "table4_covariates.csv", index=False)
+    combined = pd.DataFrame(rows)
+    combined.to_csv(cfg.TABLES_DIR / "tableA10_covariates_combined.csv", index=False)
     print("\n" + table4.to_string(index=False))
 
     summary = {

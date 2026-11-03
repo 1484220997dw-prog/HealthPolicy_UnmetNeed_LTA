@@ -146,8 +146,9 @@ Crossing the two domains with the two reason groups gives four binary indicators
 
 Two reasons were excluded from the indicators. Care being refused was reported by
 between none and four respondents per year, too few to carry information. "Other" was
-excluded because its frequency jumped in 2021 in a way that suggests a change in
-interviewer practice rather than in experience. Respondents who said they needed no
+excluded because its frequency more than tripled in 2021 and fell back by 2023, a
+pattern more consistent with a change in how the category was applied than with a
+change in experience. Respondents who said they needed no
 care and those who said their need was met are coded alike, which makes the indicators
 invariant to a marked drift over the four waves in how often the "no care was needed"
 option was chosen.

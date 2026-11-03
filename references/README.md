@@ -34,6 +34,13 @@ replace the citation record with the publisher's PDF if you want the full set lo
 
 ## Refreshing
 
+Crossref and Unpaywall ask callers to identify themselves, so set your own address
+first; without it the script still runs, on the slower anonymous pool.
+
+```bash
+export CROSSREF_EMAIL=you@example.org
+```
+
 ```bash
 python fetch_references.py
 ```

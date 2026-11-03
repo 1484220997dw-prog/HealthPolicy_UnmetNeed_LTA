@@ -47,7 +47,15 @@ def main() -> int:
                     help="analyse input/synthetic/ instead of the KHP files")
     ap.add_argument("--quick", action="store_true",
                     help="40 bootstrap replications, for a smoke test")
+    ap.add_argument("--reuse", action="store_true",
+                    help="let step 02 reuse the stored point estimate and "
+                         "bootstrap draws instead of refitting them")
     args = ap.parse_args()
+
+    if args.reuse:
+        sys.argv = [sys.argv[0], "--reuse-fit", "--reuse-bootstrap"]
+    else:
+        sys.argv = [sys.argv[0]]
 
     if args.quick:
         os.environ["KHP_LTA_QUICK"] = "1"

@@ -26,6 +26,7 @@ import argparse
 import csv
 import io
 import json
+import os
 import re
 import sys
 import time
@@ -37,7 +38,12 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="repla
                               line_buffering=True)
 
 HERE = Path(__file__).resolve().parent
-CONTACT = "1484220997dw@gmail.com"
+
+# Crossref and Unpaywall ask callers to identify themselves with a contact
+# address, which buys access to their faster "polite" pools. Set CROSSREF_EMAIL
+# to your own address; the fallback keeps the script working without publishing
+# anyone's personal address in this repository.
+CONTACT = os.environ.get("CROSSREF_EMAIL", "anonymous@example.org")
 UA = {
     "User-Agent": f"khp-unmet-need-lta-reference-fetcher/1.0 (mailto:{CONTACT})",
     "Accept": "application/pdf,application/xml,text/html;q=0.9,*/*;q=0.8",

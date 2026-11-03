@@ -148,6 +148,7 @@ discard the uncertainty in the assignment.
 | A7 | Baseline characteristics by number of waves answered | `tableA7_attrition.csv` |
 | A8 | Status prevalence with inverse probability of response weighting | `tableA8_ipw_prevalence.csv` |
 | A9 | The five-status solution, for comparison with the selected model | `tableA9_five_status_solution.csv` |
+| A10 | Models A and B side by side, one row per characteristic | `tableA10_covariates_combined.csv` |
 
 ### Notes on the sensitivity analyses
 

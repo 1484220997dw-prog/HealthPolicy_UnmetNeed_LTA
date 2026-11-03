@@ -1,10 +1,10 @@
 Research in context                   196
 1. Background                         526
-2. Methods                            854
+2. Methods                            866
 3. Results                            961
 4. Discussion                         893
 5. Conclusion                         199
-TOTAL (limit 4,000)                 3,629
+TOTAL (limit 4,000)                 3,641
 
 ok   abstract                        248 / 250 words
 ok   research in context box         196 / 200 words
