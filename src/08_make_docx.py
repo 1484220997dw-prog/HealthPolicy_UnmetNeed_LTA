@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import pandas as pd
 from docx import Document
-from docx.enum.section import WD_SECTION
+from docx.enum.section import WD_ORIENT, WD_SECTION
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
@@ -46,6 +46,56 @@ TABLE_FILES = {
     "Table 3.": "table3_transition_matrices.csv",
 }
 FIGURE_FILE = "figure1_status_prevalence_and_persistence.png"
+
+# Appendix tables, in order: (number, caption, file, rename, drop).
+#
+# ``rename`` only relabels columns for the reader; ``drop`` is the one way a
+# column leaves the table. Keeping the two separate matters — an earlier version
+# used a single "keep" mapping for both jobs and silently reduced three of these
+# tables to their first column.
+#
+# The regression tables carry both the raw bounds and a formatted "estimate"
+# column; printing both would double the width for no added information.
+APPENDIX_TABLES: list[tuple[str, str, str, dict[str, str] | None, list[str] | None]] = [
+    ("Table A1", "Model selection: one to six latent statuses, with wave-specific "
+     "and with time-homogeneous transitions",
+     "tableA1_model_selection.csv",
+     {"K": "Statuses", "transitions": "Transitions", "n_parameters": "Parameters",
+      "log_likelihood": "Log-likelihood", "entropy_R2": "Entropy R2",
+      "smallest_status_pct": "Smallest status (%)"}, None),
+    ("Table A2", "Weighted prevalence of each stated reason, by domain and year "
+     "(%, with unweighted counts)",
+     "tableA2_reason_prevalence.csv", None, None),
+    ("Table A3", "Model A in full: multinomial logit for latent status in 2020, "
+     "relative risk ratios against having no unmet need",
+     "tableA3_model_a_baseline_status.csv",
+     {"outcome": "Status", "term": "Characteristic", "estimate": "RRR (95% CI)"},
+     ["RRR", "ci_low", "ci_high", "p_value"]),
+    ("Table A4", "Model B in full: logit for being in an unmet-need status one "
+     "year later, among person-waves that begin in one",
+     "tableA4_model_b_persistence.csv",
+     {"term": "Characteristic", "estimate": "OR (95% CI)"},
+     ["OR", "ci_low", "ci_high", "p_value"]),
+    ("Table A5", "Model B re-estimated with posterior-probability weights instead "
+     "of modal assignment",
+     "tableA5_model_b_posterior_weighted.csv",
+     {"term": "Characteristic", "estimate": "OR (95% CI)"},
+     ["OR", "ci_low", "ci_high", "p_value"]),
+    ("Table A6", "Latent status prevalence among the 7,905 adults who answered all "
+     "four waves (%)",
+     "tableA6_completecase_prevalence.csv", {"year": "Year"}, None),
+    ("Table A7", "Baseline characteristics by number of waves answered (weighted %)",
+     "tableA7_attrition.csv", None, None),
+    ("Table A8", "Latent status prevalence with inverse probability of response "
+     "weighting (%)",
+     "tableA8_ipw_prevalence.csv", {"year": "Year"}, None),
+    ("Table A9", "The five-status solution, for comparison with the selected "
+     "four-status model",
+     "tableA9_five_status_solution.csv",
+     {"transitions": "Transitions", "quantity": "Quantity"}, None),
+    ("Table A10", "Models A and B side by side, one row per characteristic",
+     "tableA10_covariates_combined.csv", None, None),
+]
 
 
 # --------------------------------------------------------------------------- #
@@ -173,7 +223,7 @@ def add_markdown_table(doc: Document, rows: list[list[str]]) -> None:
                     run.bold = True
 
 
-def add_dataframe(doc: Document, df: pd.DataFrame) -> None:
+def add_dataframe(doc: Document, df: pd.DataFrame, font_size: Pt = Pt(8)) -> None:
     df = df.fillna("")
     table = doc.add_table(rows=len(df) + 1, cols=len(df.columns))
     table.style = "Table Grid"
@@ -183,14 +233,14 @@ def add_dataframe(doc: Document, df: pd.DataFrame) -> None:
         para.paragraph_format.line_spacing = 1.0
         run = para.add_run(str(name))
         run.bold = True
-        run.font.size = Pt(8)
+        run.font.size = font_size
     for i, (_, row) in enumerate(df.iterrows(), start=1):
         for j, value in enumerate(row):
             para = table.cell(i, j).paragraphs[0]
             para.paragraph_format.line_spacing = 1.0
             para.paragraph_format.space_after = Pt(0)
             run = para.add_run("" if pd.isna(value) else str(value))
-            run.font.size = Pt(8)
+            run.font.size = font_size
 
 
 # Anything after this marker in a Markdown file is a working note for the
@@ -304,17 +354,23 @@ def append_tables_and_figure(out_path: Path) -> None:
     doc.save(out_path)
 
 
-# Markup that must not survive conversion. The line-anchored patterns apply to
-# paragraphs only: a table cell may legitimately contain "#" as a column name or
-# a pipe as part of its text, and flagging those is a false alarm.
-INLINE_LEFTOVERS = {
+# Markup that must not survive conversion.
+#
+# Paragraphs are checked for everything, because the converter parses all of it
+# there. Table cells are checked only for markup that is never legitimate data:
+# a cell may hold "#" as a column name, a pipe as part of its text, or the
+# asterisks that mark statistical significance, and flagging those as unparsed
+# bold would be a false alarm.
+PARAGRAPH_LEFTOVERS = {
     "HTML tag": r"<su[bp]>",
-    "bold marker": r"\*\*",
+    "bold marker": r"\*\*[^*\n]+\*\*",
     "escape backslash": r"\\[.\[\]|*_]",
-}
-BLOCK_LEFTOVERS = {
     "heading marker": r"(?m)^#{1,4} ",
     "pipe-table row": r"(?m)^\|",
+}
+CELL_LEFTOVERS = {
+    "HTML tag": r"<su[bp]>",
+    "escape backslash": r"\\[.\[\]|*_]",
 }
 
 
@@ -325,11 +381,44 @@ def verify(path: Path) -> tuple[int, int, dict[str, int]]:
     cells = "\n".join(" ".join(c.text for c in row.cells)
                       for table in doc.tables for row in table.rows)
 
-    found = {name: len(re.findall(pat, paragraphs)) + len(re.findall(pat, cells))
-             for name, pat in INLINE_LEFTOVERS.items()}
-    found |= {name: len(re.findall(pat, paragraphs))
-              for name, pat in BLOCK_LEFTOVERS.items()}
+    found: dict[str, int] = {}
+    for name, pat in PARAGRAPH_LEFTOVERS.items():
+        found[name] = len(re.findall(pat, paragraphs))
+    for name, pat in CELL_LEFTOVERS.items():
+        found[name] = found.get(name, 0) + len(re.findall(pat, cells))
     return len(doc.paragraphs), len(doc.tables), {k: v for k, v in found.items() if v}
+
+
+def append_appendix_tables(out_path: Path) -> int:
+    """Add Tables A1-A10 in full, on landscape pages so the wide ones fit."""
+    doc = Document(out_path)
+
+    section = doc.add_section(WD_SECTION.NEW_PAGE)
+    section.orientation = WD_ORIENT.LANDSCAPE
+    section.page_width, section.page_height = section.page_height, section.page_width
+    section.left_margin = section.right_margin = Inches(0.7)
+    section.top_margin = section.bottom_margin = Inches(0.7)
+
+    add_runs(doc.add_paragraph(style="Heading 1"), "E. Appendix tables in full")
+    add_runs(doc.add_paragraph(),
+             "The same tables are in `output/tables/` of the replication "
+             "repository as CSV files.")
+
+    n_added = 0
+    for number, caption, fname, rename, drop in APPENDIX_TABLES:
+        df = pd.read_csv(cfg.TABLES_DIR / fname)
+        if drop:
+            df = df.drop(columns=[c for c in drop if c in df.columns])
+        if rename:
+            df = df.rename(columns=rename)
+        para = doc.add_paragraph()
+        para.paragraph_format.space_before = Pt(14)
+        para.paragraph_format.keep_with_next = True
+        add_runs(para, f"**{number}.** {caption}.")
+        add_dataframe(doc, df, font_size=Pt(7.5))
+        n_added += 1
+    doc.save(out_path)
+    return n_added
 
 
 def main() -> None:
@@ -337,10 +426,11 @@ def main() -> None:
     made = []
     for md in sorted(MANUSCRIPT_DIR.glob("0*.md")):
         out = md.with_suffix(".docx")
-        is_manuscript = md.name.startswith("05_")
-        n = convert(md, out, with_tables=is_manuscript)
-        if is_manuscript:
+        n = convert(md, out, with_tables=md.name.startswith("05_"))
+        if md.name.startswith("05_"):
             append_tables_and_figure(out)
+        if md.name.startswith("06_"):
+            n += append_appendix_tables(out)
         made.append((out.name, n, out.stat().st_size))
 
     print(f"{'file':<28}{'paras':>7}{'tables':>8}{'size':>12}  leftover markup")
