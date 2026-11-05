@@ -42,6 +42,7 @@ HealthPolicy_UnmetNeed_LTA/
 ├── notebooks/
 │   └── KHP_UnmetNeed_LTA_Colab.ipynb    runs end to end in Google Colab
 ├── manuscript/          cover letter, title page, highlights, manuscript, appendix
+├── docs/                how to submit, how to push, how the .docx files are built
 ├── references/          one PDF per reference, plus references.bib and .csv
 └── requirements.txt
 ```
