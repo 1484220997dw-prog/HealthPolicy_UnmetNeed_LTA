@@ -32,3 +32,5 @@ Thumbs.db
 # A synthetic demo run writes here; it is reproducible from the committed
 # synthetic panel, so it does not need to be in the repository.
 output/synthetic/
+
+output/preview/

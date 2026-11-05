@@ -24,6 +24,16 @@ What the script does beyond a plain conversion:
   Markdown file is left out of the `.docx`. The highlights file uses this to keep its
   character-count table out of the submission copy.
 
+## Checking the layout
+
+```bash
+python src/09_preview_pdf.py
+```
+
+Reading a .docx as XML shows that the content is there but not how it sits on the page.
+This step renders each file to PDF with LibreOffice into `output/preview/` and reports
+the page count and orientation. The PDFs are for review only — Elsevier wants the .docx.
+
 ## After generating
 
 1. Open `05_manuscript.docx` and confirm the word count in Word's own counter. The

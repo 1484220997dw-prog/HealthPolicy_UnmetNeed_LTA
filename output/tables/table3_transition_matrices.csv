@@ -1,4 +1,4 @@
-interval,status at t,No unmet need,Cost barrier,Time and availability barrier,Compound barrier
+Interval,Status at year t,No unmet need,Cost barrier,Time and availability barrier,Compound barrier
 2020 to 2021,No unmet need,0.916 (0.895-0.933),0.025 (0.014-0.041),0.056 (0.037-0.072),0.003 (0.001-0.005)
 2020 to 2021,Cost barrier,0.402 (0.309-0.494),0.567 (0.462-0.659),0.021 (0.000-0.081),0.010 (0.000-0.052)
 2020 to 2021,Time and availability barrier,0.516 (0.454-0.585),0.021 (0.000-0.047),0.455 (0.377-0.520),0.008 (0.000-0.021)

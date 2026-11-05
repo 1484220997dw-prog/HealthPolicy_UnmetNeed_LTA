@@ -37,6 +37,7 @@ HealthPolicy_UnmetNeed_LTA/
 │   ├── 06_sensitivity_k5.py     the five-status solution, for comparison
 │   ├── 07_check_manuscript.py   word counts and audit of the numbers in the text
 │   ├── 08_make_docx.py          the .docx files to upload, built from manuscript/
+│   ├── 09_preview_pdf.py        render those to PDF for a layout check
 │   └── run_all.py               the whole pipeline, in order
 ├── notebooks/
 │   └── KHP_UnmetNeed_LTA_Colab.ipynb    runs end to end in Google Colab

@@ -10,3 +10,6 @@ statsmodels==0.15.0
 
 # python-docx, for step 08
 python-docx==1.2.0
+
+# pymupdf, for the optional PDF layout check in step 09
+pymupdf==2.1

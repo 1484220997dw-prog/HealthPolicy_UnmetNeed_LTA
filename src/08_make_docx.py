@@ -41,9 +41,9 @@ BODY_SIZE = Pt(12)
 
 # Tables and the figure are inserted into 05_manuscript.docx at these markers.
 TABLE_FILES = {
-    "Table 1.": "table1_baseline_characteristics.csv",
-    "Table 2.": "table2_measurement_model.csv",
-    "Table 3.": "table3_transition_matrices.csv",
+    "Table 1": "table1_baseline_characteristics.csv",
+    "Table 2": "table2_measurement_model.csv",
+    "Table 3": "table3_transition_matrices.csv",
 }
 FIGURE_FILE = "figure1_status_prevalence_and_persistence.png"
 
@@ -127,6 +127,27 @@ def new_document(line_spacing: float = 1.5) -> Document:
         st.paragraph_format.space_before = Pt(12)
         st.paragraph_format.space_after = Pt(6)
         st.paragraph_format.keep_with_next = True
+
+        # The built-in heading styles point at the document theme's heading
+        # font, and that reference outranks the name set above, so headings
+        # come out in the theme's sans-serif while the body is serif. Drop the
+        # theme attributes and name the font outright.
+        rpr = st.element.get_or_add_rPr()
+        fonts = rpr.find(qn("w:rFonts"))
+        if fonts is None:
+            fonts = OxmlElement("w:rFonts")
+            rpr.append(fonts)
+        for attr in ("asciiTheme", "hAnsiTheme", "eastAsiaTheme", "cstheme"):
+            if fonts.get(qn("w:" + attr)) is not None:
+                del fonts.attrib[qn("w:" + attr)]
+        for attr in ("ascii", "hAnsi", "eastAsia", "cs"):
+            fonts.set(qn("w:" + attr), BODY_FONT)
+
+        # The Title style carries a decorative bottom border; a manuscript
+        # does not want a rule under its title.
+        ppr = st.element.get_or_add_pPr()
+        for border in ppr.findall(qn("w:pBdr")):
+            ppr.remove(border)
     return doc
 
 
@@ -264,6 +285,17 @@ def add_markdown_table(doc: Document, rows: list[list[str]]) -> None:
                     run.bold = True
 
 
+def read_table(path: Path) -> pd.DataFrame:
+    """Read a results CSV exactly as written.
+
+    The analysis scripts format every cell for display before writing, so the
+    file already says "690" and "<0.001". Letting pandas infer types turns an
+    all-numeric column back into floats and prints those as "690.0" and "0.0",
+    which is both ugly and, for a p-value, wrong.
+    """
+    return pd.read_csv(path, dtype=str, keep_default_na=False)
+
+
 def add_dataframe(doc: Document, df: pd.DataFrame, font_size: Pt = Pt(8)) -> None:
     df = df.fillna("")
     table = doc.add_table(rows=len(df) + 1, cols=len(df.columns))
@@ -396,18 +428,34 @@ def insert_object(doc: Document, heading: str) -> None:
     return None
 
 
-def append_tables_and_figure(out_path: Path) -> None:
-    """Add the three tables and Figure 1 after the caption list."""
+def harvest_captions(md_path: Path) -> dict[str, str]:
+    """Take the full captions from the manuscript's own caption section.
+
+    They are the single source of truth: the table that goes into the document
+    carries the same caption the text declares, and neither can drift from the
+    other.
+    """
+    text = re.sub(r"<!--.*?-->", "", md_path.read_text(encoding="utf-8"), flags=re.S)
+    captions = {}
+    for m in re.finditer(r"\*\*(Table \d+|Figure \d+)\\?\.\*\*\s*(.+?)(?=\n\s*\n|\Z)",
+                         unescape(text), flags=re.S):
+        captions[m.group(1)] = re.sub(r"\s+", " ", m.group(2)).strip()
+    return captions
+
+
+def append_tables_and_figure(out_path: Path, captions: dict[str, str]) -> None:
+    """Add the three tables and Figure 1, each under its full caption."""
     doc = Document(out_path)
     doc.add_page_break()
-    for caption, fname in TABLE_FILES.items():
-        df = pd.read_csv(cfg.TABLES_DIR / fname)
+    for label, fname in TABLE_FILES.items():
+        df = read_table(cfg.TABLES_DIR / fname)
         para = doc.add_paragraph()
-        add_runs(para, f"**{caption}**")
+        para.paragraph_format.keep_with_next = True
+        add_runs(para, f"**{label}.** {captions.get(label, '')}")
         add_dataframe(doc, df)
         doc.add_paragraph()
     para = doc.add_paragraph()
-    add_runs(para, "**Figure 1.**")
+    add_runs(para, f"**Figure 1.** {captions.get('Figure 1', '')}")
     doc.add_picture(str(cfg.FIGURES_DIR / FIGURE_FILE), width=Inches(6.4))
     doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.save(out_path)
@@ -465,7 +513,7 @@ def append_appendix_tables(out_path: Path) -> int:
 
     n_added = 0
     for number, caption, fname, rename, drop in APPENDIX_TABLES:
-        df = pd.read_csv(cfg.TABLES_DIR / fname)
+        df = read_table(cfg.TABLES_DIR / fname)
         if drop:
             df = df.drop(columns=[c for c in drop if c in df.columns])
         if rename:
@@ -487,7 +535,7 @@ def main() -> None:
         out = md.with_suffix(".docx")
         n = convert(md, out, with_tables=md.name.startswith("05_"))
         if md.name.startswith("05_"):
-            append_tables_and_figure(out)
+            append_tables_and_figure(out, harvest_captions(md))
         if md.name.startswith("06_"):
             n += append_appendix_tables(out)
         made.append((out.name, n, out.stat().st_size))

@@ -29,6 +29,8 @@ STEPS = [
     ("05_make_synthetic.py", "write the synthetic replica of the panel"),
     ("06_sensitivity_k5.py", "the five-status solution, as a sensitivity analysis"),
     ("07_check_manuscript.py", "word counts and audit of the numbers in the text"),
+    ("08_make_docx.py", "the .docx files to upload"),
+    ("09_preview_pdf.py", "render those to PDF for a layout check (needs LibreOffice)"),
 ]
 
 
@@ -82,7 +84,9 @@ def main() -> int:
         # real data and would all appear to mismatch.
         steps = [s for s in steps if s[0] not in ("01_build_panel.py",
                                                   "05_make_synthetic.py",
-                                                  "07_check_manuscript.py")]
+                                                  "07_check_manuscript.py",
+                                                  "08_make_docx.py",
+                                                  "09_preview_pdf.py")]
         # step 04 reads the prevalence log that step 01 normally writes
         import pandas as pd
         panel = pd.read_csv(cfg.PANEL_CSV)

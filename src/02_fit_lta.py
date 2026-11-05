@@ -117,19 +117,19 @@ def main() -> None:
     rho_lo, rho_hi = lta.ci(draws["rho"])
     rows = []
     for j, ind in enumerate(cfg.INDICATORS):
-        row = {"indicator": cfg.INDICATOR_LABELS[ind]}
+        row = {"Indicator": cfg.INDICATOR_LABELS[ind]}
         for k in range(K):
             row[names[k]] = (f"{fit.rho[j, k]:.3f} "
                              f"({rho_lo[j, k]:.3f}-{rho_hi[j, k]:.3f})")
         rows.append(row)
     prev_lo, prev_hi = lta.ci(draws["prev"])
     for t, year in enumerate(cfg.YEARS):
-        row = {"indicator": f"Status prevalence, {year} (%)"}
+        row = {"Indicator": f"Status prevalence, {year} (%)"}
         for k in range(K):
             row[names[k]] = (f"{100 * fit.status_prevalence[t, k]:.1f} "
                              f"({100 * prev_lo[t, k]:.1f}-{100 * prev_hi[t, k]:.1f})")
         rows.append(row)
-    row = {"indicator": "Mean posterior probability of assigned status"}
+    row = {"Indicator": "Mean posterior probability of assigned status"}
     for k, v in enumerate(fit.avg_posterior()):
         row[names[k]] = f"{v:.3f}"
     rows.append(row)
@@ -142,8 +142,8 @@ def main() -> None:
     rows = []
     for t in range(cfg.N_WAVES - 1):
         for k in range(K):
-            row = {"interval": f"{cfg.YEARS[t]} to {cfg.YEARS[t + 1]}",
-                   "status at t": names[k]}
+            row = {"Interval": f"{cfg.YEARS[t]} to {cfg.YEARS[t + 1]}",
+                   "Status at year t": names[k]}
             for l in range(K):
                 row[names[l]] = (f"{fit.tau[t, k, l]:.3f} "
                                  f"({tau_lo[t, k, l]:.3f}-{tau_hi[t, k, l]:.3f})")

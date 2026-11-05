@@ -105,8 +105,11 @@ def table1(df: pd.DataFrame, names: list[str]) -> pd.DataFrame:
         hdr[lab] = f"{100 * g.w_lon.sum() / base.w_lon.sum():.1f}"
     rows.append(hdr)
     for col, pretty, levels in ROWS:
-        rows.append({"Characteristic": pretty, **{lab: "" for lab, _ in groups},
-                     "p": f"{_design_p(base, col, levels, names):.3f}"})
+        pval = _design_p(base, col, levels, names)
+        shown = ("" if pd.isna(pval)
+                 else "<0.001" if pval < 0.001 else f"{pval:.3f}")
+        rows.append({"Characteristic": pretty,
+                     **{lab: "" for lab, _ in groups}, "p": shown})
         for lv in levels:
             row = {"Characteristic": f"   {lv}"}
             for lab, g in groups:
