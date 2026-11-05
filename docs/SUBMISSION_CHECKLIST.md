@@ -7,19 +7,19 @@ submission through <https://www.editorialmanager.com/HEAP/>.
 
 ## Files to upload, in this order
 
-| # | Submission item | File in this package | Status |
+| # | Submission item | File to upload | Status |
 |---|---|---|---|
-| 1 | Cover letter | `manuscript/01_cover_letter.md` | date and GitHub URL to insert |
-| 2 | Title page (incl. funding, competing interests) | `manuscript/02_title_page.md` | GitHub URL to insert |
-| 3 | CRediT author contribution statement | `manuscript/03_credit_statement.md` | ready |
-| 4 | Highlights (file name must contain "highlights") | `manuscript/04_highlights.md` | ready |
-| 5 | Manuscript, anonymised | `manuscript/05_manuscript.md` | ready |
-| 6 | Appendices, uploaded as "e-component" | `manuscript/06_appendix.md` | ready |
+| 1 | Cover letter | `manuscript/01_cover_letter.docx` | ready |
+| 2 | Title page (incl. funding, competing interests) | `manuscript/02_title_page.docx` | ready |
+| 3 | CRediT author contribution statement | `manuscript/03_credit_statement.docx` | ready |
+| 4 | Highlights (file name must contain "highlights") | `manuscript/04_highlights.docx` | ready |
+| 5 | Manuscript, anonymised | `manuscript/05_manuscript.docx` | ready |
+| 6 | Appendices, uploaded as "e-component" | `manuscript/06_appendix.docx` | ready |
+| 7 | Figure, as a separate file | `output/figures/figure1_...tif` | ready |
 
-Convert items 1–6 to `.docx` before uploading — Elsevier does not accept a PDF as the
-source file, and the journal asks for single-column Word files. The Markdown sources
-are the editable master copies; `docs/convert_to_docx.md` gives the one-line Pandoc
-command.
+The `.docx` files are built from the Markdown masters by `src/08_make_docx.py`; see
+`docs/convert_to_docx.md`. Item 7 is required even though Figure 1 is also embedded in
+the manuscript: the journal asks for artwork as separate files.
 
 ## Journal requirements, item by item
 
@@ -54,27 +54,34 @@ the prose does not contain — that is, the text has drifted from the output and
 corrected before submission. The report is saved to
 `output/logs/manuscript_audit.txt`.
 
-## AUTHOR ACTION before submission
+## Outstanding items
 
-1. **GitHub URL.** Push the repository (see `docs/GITHUB_PUSH.md`) and insert the
-   public URL in three places: the cover letter, the title page data-availability
-   statement, and the Methods paragraph headed "Data and code availability".
-2. **Ethical review.** Confirm with the Kyungwoon University IRB whether an exemption
-   determination is needed for secondary analysis of de-identified KHP public-use
-   data, and add the determination number to the title page if one is issued. The
-   current wording states only what is verifiable: that the data are de-identified
-   secondary microdata obtained under a data-use agreement and that consent was
-   obtained by the data producers.
-3. **KHP data-use agreement number.** Insert the approval identifier issued with the
-   data release, if your agreement requires it to be cited.
-4. **Date** on the cover letter.
-5. **Confirm the author order and the corresponding author.** The package puts
-   DU Haichao first and as corresponding author, with Wansuk Choi second, following
-   the author list supplied for this study. Note that the corresponding address is a
-   personal mailbox; some journals query that, and wschoi@ikw.ac.kr is the
-   institutional alternative if the editors ask.
-6. **Check the word count** after converting to .docx, since Word counts differently
-   from the script. `output/logs/word_count.txt` records the Markdown count.
+Neither of these blocks submission. The journal's Guide for Authors does not require an
+ethics approval number, and the ethics statement on the title page says only what can be
+verified without one: that the microdata are de-identified, that consent was obtained by
+the data producers, and that the authors saw nothing identifying. Adding a number later
+is an addition to that statement, not a correction of it, so nothing said at submission
+becomes wrong.
+
+**1. Ethical review (ask now, add later).** Email the Kyungwoon University IRB to ask
+whether secondary analysis of de-identified public-use KHP data needs an exemption
+determination. Korean IRBs usually issue one within a week or two for this kind of
+study, and some do not require an application at all. Add the number to the title page
+when it arrives — at revision if the paper is already under review.
+
+In the submission system, if asked about ethical approval, answer **not applicable** or
+**exempt** and say the study analyses de-identified public-use secondary data. Do not
+tick "approved by an ethics committee": that would not be true yet.
+
+**2. KHP data-use agreement number (five minutes).** The approval KIHASA issued when the
+data were released carries an identifier. Check the approval email and the agreement
+terms: if the agreement requires the number to be cited in publications, add it to the
+title page before submitting, since that is a contractual obligation rather than a
+journal one. If it does not, nothing is needed.
+
+Also note that Kyungwoon University may have its own rule requiring an IRB record for
+anything published, independently of what the journal asks. That is worth confirming
+even though the journal does not need it.
 
 ## Suggested reviewers
 
