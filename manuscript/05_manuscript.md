@@ -72,7 +72,7 @@ Covariate associations were estimated in a three-step design \[27–29\]: the me
 
 Prespecified sensitivity analyses restricted the sample to the 7,905 adults who answered all four waves, and reweighted that group by the inverse of a modelled probability of responding to all four waves (Appendix Tables A6–A8).
 
-Analyses were carried out in Python 3.12. All code, the data dictionary, a synthetic replica of the analysis panel, and every table, figure and quoted number are available at https://github.com/1484220997dw-prog/HealthPolicy_UnmetNeed_LTA; the KHP microdata are released on application and may not be redistributed by the authors.
+Analyses were carried out in Python 3.12. All code, the data dictionary, a synthetic replica of the analysis panel, and every table, figure and quoted number are openly available in a public repository; its address is given on the title page and is withheld here so that review can remain anonymous. The KHP microdata are released on application and may not be redistributed by the authors.
 
 ## 3\. Results
 
