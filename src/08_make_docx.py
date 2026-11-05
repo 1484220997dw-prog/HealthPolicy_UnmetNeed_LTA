@@ -160,13 +160,48 @@ INLINE = re.compile(
 )
 
 
+# Marks where a Markdown hard line break was, between joining the source lines
+# and writing them into a paragraph.
+HARD_BREAK = "\x00BREAK\x00"
+
+
 def unescape(text: str) -> str:
     return re.sub(r"\\([.\[\]|*_<>~`#+=-])", r"\1", text)
 
 
+def join_lines(lines: list[str]) -> str:
+    """Join the lines of one paragraph, preserving Markdown hard breaks.
+
+    A line ending in a backslash or in two spaces asks for a line break rather
+    than a space. Both forms are kept because reformatting tools strip trailing
+    whitespace but leave the backslash alone.
+    """
+    out = []
+    for n, line in enumerate(lines):
+        hard = line.endswith("  ") or line.rstrip().endswith("\\")
+        text = line.rstrip().rstrip("\\").rstrip()
+        out.append(text)
+        if hard and n < len(lines) - 1:
+            out.append(HARD_BREAK)
+    joined = " ".join(out)
+    return joined.replace(" " + HARD_BREAK + " ", HARD_BREAK)
+
+
 def add_runs(paragraph, text: str) -> None:
-    """Write text into a paragraph, honouring bold, italic, code and links."""
-    for piece in filter(None, INLINE.split(unescape(text))):
+    """Write text into a paragraph, honouring bold, italic, code and links.
+
+    A line break is written where the source had a Markdown hard break, which
+    is what keeps an author list or a postal address on separate lines instead
+    of running them together into one block of prose.
+    """
+    for n, segment in enumerate(unescape(text).split(HARD_BREAK)):
+        if n:
+            paragraph.add_run().add_break()
+        _add_segment(paragraph, segment.strip())
+
+
+def _add_segment(paragraph, text: str) -> None:
+    for piece in filter(None, INLINE.split(text)):
         if piece.startswith("**") and piece.endswith("**"):
             paragraph.add_run(piece[2:-2]).bold = True
         elif piece.startswith("*") and piece.endswith("*") and len(piece) > 2:
@@ -344,10 +379,10 @@ def convert(md_path: Path, out_path: Path, with_tables: bool = False) -> int:
         # ordinary paragraph: join until a blank line
         body = []
         while i < len(lines) and lines[i].strip() and not is_block_start(lines[i]):
-            body.append(lines[i].strip())
+            body.append(lines[i].rstrip("\n"))
             i += 1
         if body:
-            add_runs(doc.add_paragraph(), " ".join(body))
+            add_runs(doc.add_paragraph(), join_lines(body))
             n_blocks += 1
         else:
             raise ValueError(f"{md_path.name}:{i + 1}: unhandled line {lines[i]!r}")

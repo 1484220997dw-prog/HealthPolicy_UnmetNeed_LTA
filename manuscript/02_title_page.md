@@ -4,7 +4,7 @@
 
 Cost and non-financial barriers to healthcare in South Korea, 2020–2023: a four-wave latent transition analysis
 
-*(17 words; includes the country and the type of study, as required for full-length articles)*
+<!-- Working note: 15 words; names the country and the study type, as the journal requires for full-length articles. -->
 
 ## Running title
 
@@ -12,17 +12,17 @@ Persistence of unmet healthcare need in South Korea
 
 ## Authors
 
-**DU Haichao**¹ (ORCID 0009-0006-0839-1888) — corresponding author
-**HUO Ning**¹ (ORCID 0009-0002-6606-6726)
+**DU Haichao**¹ (ORCID 0009-0006-0839-1888) — corresponding author\
+**Wansuk Choi**¹ (ORCID 0000-0003-1324-6723)
 
-¹ Department of Physical Therapy, College of Health Sciences, Kyungwoon University,
+¹ Department of Physical Therapy, College of Health Sciences, Kyungwoon University,\
 730 Gangdong-ro, Sandong-eup, Gumi-si, Gyeongsangbuk-do, Republic of Korea
 
 ## Corresponding author
 
-DU Haichao
-Department of Physical Therapy, College of Health Sciences, Kyungwoon University
-730 Gangdong-ro, Sandong-eup, Gumi-si, Gyeongsangbuk-do, Republic of Korea
+DU Haichao\
+Department of Physical Therapy, College of Health Sciences, Kyungwoon University\
+730 Gangdong-ro, Sandong-eup, Gumi-si, Gyeongsangbuk-do, Republic of Korea\
 Email: 1484220997@qq.com
 
 ## Acknowledgements

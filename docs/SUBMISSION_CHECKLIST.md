@@ -69,8 +69,10 @@ corrected before submission. The report is saved to
    data release, if your agreement requires it to be cited.
 4. **Date** on the cover letter.
 5. **Confirm the author order and the corresponding author.** The package puts
-   DU Haichao first and as corresponding author, with HUO Ning second, following the
-   author list supplied for this study.
+   DU Haichao first and as corresponding author, with Wansuk Choi second, following
+   the author list supplied for this study. Note that the corresponding address is a
+   personal mailbox; some journals query that, and wschoi@ikw.ac.kr is the
+   institutional alternative if the editors ask.
 6. **Check the word count** after converting to .docx, since Word counts differently
    from the script. `output/logs/word_count.txt` records the Markdown count.
 

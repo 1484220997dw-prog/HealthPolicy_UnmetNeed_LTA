@@ -11,14 +11,14 @@ authors:
     affiliation: >-
       Department of Physical Therapy, College of Health Sciences,
       Kyungwoon University, Gumi-si, Republic of Korea
-  - family-names: Huo
-    given-names: Ning
-    orcid: https://orcid.org/0009-0002-6606-6726
+  - family-names: Choi
+    given-names: Wansuk
+    orcid: https://orcid.org/0000-0003-1324-6723
     affiliation: >-
       Department of Physical Therapy, College of Health Sciences,
       Kyungwoon University, Gumi-si, Republic of Korea
 version: 1.0.0
-date-released: "2026-11-03"
+date-released: "2026-11-05"
 license: MIT
 keywords:
   - unmet healthcare need
