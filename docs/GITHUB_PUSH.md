@@ -50,7 +50,7 @@ Create an empty repository on GitHub named `HealthPolicy_UnmetNeed_LTA` — with
 README, licence or .gitignore, since this package supplies all three — and then:
 
 ```bash
-git remote add origin https://github.com/<your-account>/HealthPolicy_UnmetNeed_LTA.git
+git remote add origin https://github.com/1484220997dw-prog/HealthPolicy_UnmetNeed_LTA.git
 ```
 
 ```bash
@@ -64,7 +64,7 @@ git push -u origin main
 2. Set `REPO_URL` in `notebooks/KHP_UnmetNeed_LTA_Colab.ipynb` to the same URL, and
    add the Colab badge link to the README if you want reviewers to open it in one
    click:
-   `https://colab.research.google.com/github/<your-account>/HealthPolicy_UnmetNeed_LTA/blob/main/notebooks/KHP_UnmetNeed_LTA_Colab.ipynb`
+   `https://colab.research.google.com/github/1484220997dw-prog/HealthPolicy_UnmetNeed_LTA/blob/main/notebooks/KHP_UnmetNeed_LTA_Colab.ipynb`
 3. For a citable snapshot, link the repository to Zenodo and tag a release; the DOI can
    then replace the bare URL in the data-availability statement, which reviewers
    generally prefer.

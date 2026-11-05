@@ -65,7 +65,7 @@ Korea Institute for Health and Social Affairs at https://www.khp.re.kr and may n
 redistributed by the authors. All analysis code, the data dictionary, a synthetic
 replica of the analysis panel that allows the pipeline to be run without the
 restricted data, and every table, figure and quoted number are openly available at
-[GITHUB URL TO BE INSERTED AT SUBMISSION].
+https://github.com/1484220997dw-prog/HealthPolicy_UnmetNeed_LTA.
 
 ## Word count
 

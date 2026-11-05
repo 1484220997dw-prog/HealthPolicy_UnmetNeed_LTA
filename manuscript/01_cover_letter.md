@@ -6,7 +6,7 @@ Kyungwoon University
 730 Gangdong-ro, Sandong-eup, Gumi-si, Gyeongsangbuk-do, Republic of Korea
 1484220997@qq.com
 
-[DATE]
+5 November 2026
 
 The Editors
 *Health Policy*
@@ -59,7 +59,7 @@ limits for full-length articles. The abstract follows the required structure, an
 included the research-in-context box, highlights and a CRediT statement. All analysis
 code, the data dictionary, a synthetic replica of the analysis panel that allows the
 pipeline to be run without the restricted microdata, and the complete set of tables,
-figures and quoted numbers are openly available at [GITHUB URL]. The Korea Health
+figures and quoted numbers are openly available at https://github.com/1484220997dw-prog/HealthPolicy_UnmetNeed_LTA. The Korea Health
 Panel microdata themselves are released on application and may not be redistributed by
 us; the repository documents the application route.
 
