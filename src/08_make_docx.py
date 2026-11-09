@@ -45,7 +45,12 @@ TABLE_FILES = {
     "Table 2": "table2_measurement_model.csv",
     "Table 3": "table3_transition_matrices.csv",
 }
-FIGURE_FILE = "figure1_status_prevalence_and_persistence.png"
+# The manuscript's caption section is the single source of truth for the
+# captions, but it is not itself rendered: each caption reaches the document
+# attached to its own table, and rendering the list as well would print every
+# caption twice. The figure goes to the journal as a separate TIFF, so no copy
+# is embedded here either; only its caption appears.
+CAPTION_SECTION = "Tables and figure"
 
 # Appendix tables, in order: (number, caption, file, rename, drop).
 #
@@ -347,6 +352,11 @@ def convert(md_path: Path, out_path: Path, with_tables: bool = False) -> int:
         m = re.match(r"^(#{1,4})\s+(.*)$", stripped)
         if m:
             level, text = len(m.group(1)), m.group(2)
+            if with_tables and unescape(text).strip() == CAPTION_SECTION:
+                i += 1
+                while i < len(lines) and not re.match(r"^#{1,4}\s", lines[i].strip()):
+                    i += 1
+                continue
             style = "Title" if level == 1 else f"Heading {min(level - 1, 3)}"
             add_runs(doc.add_paragraph(style=style), text)
             n_blocks += 1
@@ -444,7 +454,7 @@ def harvest_captions(md_path: Path) -> dict[str, str]:
 
 
 def append_tables_and_figure(out_path: Path, captions: dict[str, str]) -> None:
-    """Add the three tables and Figure 1, each under its full caption."""
+    """Add the three tables under their captions, then the figure caption."""
     doc = Document(out_path)
     doc.add_page_break()
     for label, fname in TABLE_FILES.items():
@@ -456,8 +466,6 @@ def append_tables_and_figure(out_path: Path, captions: dict[str, str]) -> None:
         doc.add_paragraph()
     para = doc.add_paragraph()
     add_runs(para, f"**Figure 1.** {captions.get('Figure 1', '')}")
-    doc.add_picture(str(cfg.FIGURES_DIR / FIGURE_FILE), width=Inches(6.4))
-    doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.save(out_path)
 
 

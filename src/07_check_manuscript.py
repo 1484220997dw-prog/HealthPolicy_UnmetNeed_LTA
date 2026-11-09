@@ -92,7 +92,8 @@ def word_count() -> dict[str, int]:
         j = i + 1
         while j < len(heads) and not any(heads[j][2].startswith(c) for c in COUNTED) \
                 and not heads[j][2].startswith(("Tables and figure", "References",
-                                                "Abstract")):
+                                                "Abstract",
+                                                "Declaration of generative AI")):
             nxt = heads[j + 1][0] if j + 1 < len(heads) else len(text)
             n += _words(text[heads[j][1]:nxt])
             j += 1

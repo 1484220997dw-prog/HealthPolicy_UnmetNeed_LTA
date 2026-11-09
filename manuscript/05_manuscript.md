@@ -134,6 +134,14 @@ Unmet healthcare need in South Korea fell between 2020 and 2023, yet roughly one
 
 For policy-makers in Korea, the specific implications are to extend the dental benefit package, where the persistent cost barrier is concentrated, and to pursue time and availability measures as a separate track with its own target population, rather than expecting either to register on the pooled indicator. For health systems more generally, and for the agencies that monitor universal health coverage, the implication is about measurement: annual prevalence of unmet need should be reported split by barrier type and alongside a measure of persistence, such as the share of the population reporting unmet need in two or more of four consecutive survey years. Both are available in existing panel surveys and neither requires new data collection.
 
+## Declaration of generative AI and AI-assisted technologies
+
+During the preparation of this work the authors used Claude (Anthropic) to assist with
+developing the analysis code and with language editing. The authors reviewed and
+edited the output as needed and take full responsibility for the content of the
+publication. No generative AI was used to produce, alter or interpret the underlying
+data, the statistical estimates, the figure or the conclusions.
+
 ---
 
 ## Tables and figure

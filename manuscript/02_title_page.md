@@ -50,14 +50,6 @@ agreement. Informed consent for the survey was obtained by the data producers fr
 participating households at the time of data collection. The authors did not have
 access to any information that could identify individual participants.
 
-## Declaration of generative AI and AI-assisted technologies
-
-During the preparation of this work the authors used Claude (Anthropic) to assist with
-developing the analysis code and with language editing. The authors reviewed and
-edited the output as needed and take full responsibility for the content of the
-publication. No generative AI was used to produce, alter or interpret the underlying
-data, the statistical estimates, the figure or the conclusions.
-
 ## Data and code availability
 
 The Korea Health Panel microdata are available to researchers on application to the
